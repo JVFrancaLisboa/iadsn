@@ -38,7 +38,47 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 ---
 
-## 📂 Estrutura do Projeto
+## ⚙️ Pré-requisitos
 
-Abaixo está uma breve descrição da estrutura de diretórios:
+Antes de começar, você precisará ter as seguintes ferramentas instaladas no seu ambiente de desenvolvimento:
+
+- **Java 21** ou superior
+- **Maven 3.8+**
+- **MySQL** (ou outro banco compatível)
+- **Git** (para controle de versão)
+
+---
+
+## 🚧 Como Executar o Projeto
+
+1. **Clone este repositório**:
+   ```bash
+   git clone https://github.com/seu-usuario/iadsn.git
+   Acesse o diretório do projeto:
+
+   bash
+   Copiar código
+   cd iadsn
+   Configure o banco de dados:
+  
+   Crie um banco de dados no MySQL com o nome, por exemplo, iadsn_db.
+   Atualize o arquivo application.properties localizado em src/main/resources com as configurações do banco de dados:
+   properties
+   Copiar código
+   spring.datasource.url=jdbc:mysql://localhost:3306/iadsn_db
+   spring.datasource.username=SEU_USUARIO
+   spring.datasource.password=SUA_SENHA
+   spring.jpa.hibernate.ddl-auto=update
+   Instale as dependências do projeto: Use o Maven para baixar e configurar as dependências necessárias:
+  
+   bash
+   Copiar código
+   mvn clean install
+   Inicie a aplicação: Execute o servidor Spring Boot:
+  
+   bash
+   Copiar código
+   mvn spring-boot:run
+   Acesse a aplicação: Abra o navegador e vá para o endereço: http://localhost:8080
+
 
