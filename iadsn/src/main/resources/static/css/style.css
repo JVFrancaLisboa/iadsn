@@ -1,0 +1,7 @@
+body {
+    background-image: url('../images/Candelabro-sistema.png');
+    background-size: cover; /* Faz a imagem cobrir todo o fundo */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    background-position: center; /* Centraliza a imagem */
+    height: 110vh; /* Garante que o body ocupe a altura total da viewport */
+}
