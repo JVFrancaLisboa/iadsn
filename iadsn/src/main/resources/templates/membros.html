@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Membros</title>
+    <!-- CDN Bootstrap .css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Cadastro de Membros</h1>
+    <form class="row g-3 needs-validation col-6 mx-auto" novalidate>
+        <!--Image-->
+        <div>
+            <div class="mb-4 d-flex justify-content-center">
+                <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                     alt="example placeholder" class="image-preview"/>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div data-mdb-ripple-init class="btn btn-primary btn-rounded">
+                    <label class="form-label text-white m-1" for="customFile1">Procurar Foto</label>
+                    <input type="file" class="form-control d-none" id="customFile1" onchange="displaySelectedImage(event, 'selectedImage')" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Nome: </label>
+            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">Nascimento: </label>
+            <input type="date" class="form-control" id="validationCustom02" value="Otto" required>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustomUsername" class="form-label">Email: (Opcional)</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="validationCustom03" class="form-label">CPF: </label>
+            <input type="text" class="form-control" id="validationCustom03" required>
+            <small class="text-muted">exemplo: "123.456.789-12"</small>
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom04" class="form-label">Sexo</label>
+            <select class="form-select" id="validationCustom04" required>
+                <option selected value="m">Masculino</option>
+                <option value="f">Feminino</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom04" class="form-label">Status Civil</label>
+            <select class="form-select" id="validationCustom05" required>
+                <option selected value="casado">Casado(a)</option>
+                <option value="solteiro">Solteiro(a)</option>
+                <option value="divorciado">Divorciado(a)</option>
+                <option value="uniao_estavel">União estável</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Endereço: </label>
+            <input type="text" class="form-control" id="validationCustom06" required>
+        </div>
+        <div class="col-md-8">
+            <label for="validationCustom04" class="form-label">Cargo: </label>
+            <select class="form-select" id="validationCustom08" required>
+                <option selected value="">Membro</option>
+                <option value="">Pastor Presidente</option>
+                <option value="">Co-Pastor</option>
+                <option value="">Pastor</option>
+                <option value="">Presbítero</option>
+                <option value="">Evangelista</option>
+                <option value="">Missionário(a)</option>
+                <option value="">Diácono/Diaconisa</option>
+                <option value="">Líder do Ministério de Louvor</option>
+                <option value="">Músico</option>
+                <option value="">Cantor</option>
+                <option value="">Líder do Ministério de Jovens</option>
+                <option value="">Líder do Ministério Infantil</option>
+                <option value="">Líder do Ministério de Adolescentes</option>
+                <option value="">Líder do Ministério de Casais</option>
+                <option value="">Líder do Ministério de Mulheres</option>
+                <option value="">Líder do Ministério de Homens</option>
+                <option value="">Líder de Missões</option>
+                <option value="">Líder de Intercessão</option>
+                <option value="">Conselheiro Espiritual</option>
+                <option value="">Secretário(a) da Igreja</option>
+                <option value="">Tesoureiro(a)</option>
+                <option value="">Contador(a)</option>
+                <option value="">Zelador(a)</option>
+                <option value="">Recepcionista</option>
+                <option value="">Coordenador de Eventos</option>
+                <option value="">Comunicação</option>
+                <option value="">Obreiro(a)</option>
+                <option value="">Dirigente de Congregação</option>
+                <option value="">Professor(a) da Escola Bíblica Dominical (EBD)</option>
+                <option value="">Líder do Ministério de Libertação</option>
+                <option value="">Líder de Assistência Social</option>
+                <option value="">Ministro da Palavra</option>
+                <option value="">Presidente da Convenção Estadual/Regional</option>
+                <option value="">Superintendente de Campo</option>
+                <option value="">Coordenador Regional de Jovens, Missões, etc.</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">Número de Telefone: </label>
+            <input type="text" class="form-control" id="validationCustom07" required>
+            <small class="text-muted">exemplo: "(61)912457823"</small>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Cadastrar Membro</button>
+        </div>
+    </form>
+</div>
+<!-- CDN Bootstrap .js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script th:src="@{js/script.js}"></script>
+</body>
+</html>
