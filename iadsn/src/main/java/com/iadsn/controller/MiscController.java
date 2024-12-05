@@ -22,7 +22,7 @@ public class MiscController {
     }
 
     @GetMapping("/membros")
-    public String getMembros(){
-        return "membros";
+    public String membros() {
+        return "fragments/membros :: content";
     }
 }
