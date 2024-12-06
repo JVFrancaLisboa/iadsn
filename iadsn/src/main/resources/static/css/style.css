@@ -4,6 +4,8 @@
     background-repeat: no-repeat; /* Evita repetição da imagem */
     background-position: center; /* Centraliza a imagem */
     height: 110vh; /* Garante que o body ocupe a altura total da viewport */
+    background-color: rgba(153, 192, 251, 1)
+    ;
 }
 
 .image-preview {
@@ -12,4 +14,21 @@
     object-fit: cover; /* Ajusta a imagem dentro do contêiner */
     border-radius: 8px; /* Opcional: deixa os cantos arredondados */
     border: 1px solid #ccc; /* Opcional: adiciona uma borda para estética */
-  }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que a altura do body seja no mínimo 100% da viewport */
+}
+
+main {
+    flex: 1; /* Ocupará todo o espaço disponível */
+}
+
+.cadastro {
+    background-color: rgba(255, 255, 255, 0.8); /* 50% de transparência */
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+}
