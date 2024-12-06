@@ -18,7 +18,7 @@ public class MiscController {
 
     @GetMapping("/movimentacoes")
     public String getMovs(){
-        return "movs";
+        return "fragments/movimentacoes :: content";
     }
 
     @GetMapping("/membros")
