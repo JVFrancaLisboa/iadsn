@@ -25,4 +25,9 @@ public class MiscController {
     public String membros() {
         return "fragments/membros :: content";
     }
+
+    @GetMapping("/contrato")
+    public String getContrato(){
+        return "fragments/contrato";
+    }
 }
