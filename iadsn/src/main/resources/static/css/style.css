@@ -32,3 +32,9 @@ main {
     border-radius: 10px;
     padding: 20px;
 }
+
+.fundo-carta{
+    background-image: url("../images/Fundo-da-Carta.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}

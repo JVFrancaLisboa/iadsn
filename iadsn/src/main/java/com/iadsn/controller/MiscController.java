@@ -35,4 +35,9 @@ public class MiscController {
     public String getRelatorio(){
         return "fragments/relatorio :: content";
     }
+
+    @GetMapping("/carta")
+    public String getCarta(){
+        return "carta";
+    }
 }
