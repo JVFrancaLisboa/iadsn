@@ -30,4 +30,14 @@ public class MiscController {
     public String getContrato(){
         return "fragments/contrato";
     }
+
+    @GetMapping("/relatorio")
+    public String getRelatorio(){
+        return "fragments/relatorio :: content";
+    }
+
+    @GetMapping("/carta")
+    public String getCarta(){
+        return "carta";
+    }
 }

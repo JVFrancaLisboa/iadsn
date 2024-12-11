@@ -25,7 +25,7 @@
                     <a class="nav-link active" href="#" aria-current="page" id="ajax-link-2" th:data-url="@{/movimentacoes}">Movimentações</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Relatório</a>
+                    <a class="nav-link" href="#" id="ajax-link-3" th:data-url="@{/relatorio}">Relatório</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="ajax-link-1" th:data-url="@{/membros}" >Membros</a>
@@ -38,7 +38,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" th:href="@{/contrato}">Contrato Aluguel</a></li>
                         <li><a class="dropdown-item" href="#">Carteirinhas</a></li>
-                        <li><a class="dropdown-item" href="#">Cartas</a></li>
+                        <li><a class="dropdown-item" th:href="@{/downloads/carta.docx}" download>Download Carta</a></li>
                     </ul>
                 </li>
             </ul>

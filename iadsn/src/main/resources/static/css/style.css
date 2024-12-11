@@ -26,9 +26,15 @@ main {
     flex: 1; /* Ocupará todo o espaço disponível */
 }
 
-.cadastro {
+.fundo-2 {
     background-color: rgba(255, 255, 255, 0.8); /* 50% de transparência */
     border: 2px solid #000;
     border-radius: 10px;
     padding: 20px;
+}
+
+.fundo-carta{
+    background-image: url("../images/Fundo-da-Carta.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
 }
