@@ -6,20 +6,19 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "dizimos")
-public class Dizimo {
+@Table(name = "gastos")
+public class Gasto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "membro_id") // 'membro_id' definido como chave secundária no bd
-    private Membro membro; // Membro que está efetuando o dizimo
-    @NotBlank(message = "Por favor preencha o campo 'Data'")
-    private Date data;
+    @NotBlank(message = "Justifique o gasto")
+    private String descricao;
     @PositiveOrZero(message = "O valor deve ser positivo")
     private BigDecimal valor;
+    @Lob
+    @Column(name = "nota_fiscal")
+    private byte[] notaFiscal;
 }
