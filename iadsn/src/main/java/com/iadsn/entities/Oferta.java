@@ -10,14 +10,11 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "dizimos")
-public class Dizimo {
+@Table(name = "ofertas")
+public class Oferta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "membro_id") // 'membro_id' definido como chave secundária no bd
-    private Membro membro; // Membro que está efetuando o dizimo
     @NotBlank(message = "Por favor preencha o campo 'Data'")
     private Date data;
     @PositiveOrZero(message = "O valor deve ser positivo")
