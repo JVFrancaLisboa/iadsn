@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "membros")
-public class Membro {
+public class MembroEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,5 +45,5 @@ public class Membro {
     @Lob
     private byte[] foto;
     @OneToMany(mappedBy = "membro")
-    private List<Dizimo> dizimos;
+    private List<DizimoEntity> dizimos;
 }
