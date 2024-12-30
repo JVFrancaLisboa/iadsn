@@ -52,6 +52,8 @@ function atualizarTexto(event) {
         const dataFormatada = `${dia}/${mes}/${ano}`; 
 
         document.getElementById('dataHojeDisplay').innerHTML = dataFormatada;
+    }else if(elemento.id == 'endereco'){
+        document.getElementById('enderecoDisplay').innerHTML = 'Endereço do imóvel do aluguel: <strong>'+elemento.value+'</strong></p>';
     }
 }
 
@@ -64,3 +66,4 @@ document.getElementById('ssp-escolha').addEventListener('input', atualizarTexto)
 document.getElementById('rg').addEventListener('input', atualizarTexto);
 document.getElementById('cpf').addEventListener('input', atualizarTexto);
 document.getElementById('dataHoje').addEventListener('input', atualizarTexto);
+document.getElementById('endereco').addEventListener('input', atualizarTexto);

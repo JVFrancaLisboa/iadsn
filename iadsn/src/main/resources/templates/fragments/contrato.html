@@ -14,7 +14,7 @@
             <br>
             <p>Locador: <strong>ELIZIO BATISTA LISBOA</strong></p>
             <p id="lacatarioDisplay">Locatário (a) (s): <strong>NOME DO LOCATÁRIO</strong></p>
-            <p>Endereço do imóvel do aluguel: <strong>XXX 0X CONJUNTO R LOTE XX CASA 03 CEILANDIA/DF</strong></p>
+            <p id="enderecoDisplay">Endereço do imóvel do aluguel: <strong>XXX 0X CONJUNTO R LOTE XX CASA 03 CEILANDIA/DF</strong></p>
             <p id="vigenciaDisplay">Vigência: <strong>06 MESES</strong></p>
             <p id="valorDisplay">Valor do aluguel: <strong>R$ 750,00 (SETECENTOS E CINQUENTA REAIS)</strong></p>
             <p>Reajuste: De acordo com 0 - (IGPM)</p>
@@ -276,6 +276,9 @@
                 <label for="dataHoje">Data de HOJE: </label>
                 <input type="date" name="dataHoje" id="dataHoje" placeholder="Coloque a data de hoje aqui...">
             </div>
+
+            <label for="vigencia">Endereço do imóvel: </label>
+                <input type="text" name="endereco" id="endereco" placeholder="ex: QNP 99 CONJUNTO M LOTE 22 CASA 33">
 
             <button onclick="gerarPDF()">Gerar PDF</button>
         </div>
