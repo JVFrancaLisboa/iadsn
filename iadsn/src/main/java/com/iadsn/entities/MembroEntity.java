@@ -22,7 +22,6 @@ public class MembroEntity {
     private Long id;
     @NotBlank(message = "Campo não pode ser nulo")
     private String nome;
-    @NotBlank(message = "Campo não pode ser nulo")
     private Date nascimento;
     @Email(message = "insira um E-Mail válido")
     private String email;
