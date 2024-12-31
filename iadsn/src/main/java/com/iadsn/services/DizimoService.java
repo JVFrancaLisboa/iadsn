@@ -22,9 +22,11 @@ public class DizimoService {
 
     public DizimoEntity atualizarDizimo(Long id, DizimoEntity dizimoAtualizado){
         DizimoEntity dizimo = getDizimoId(id);
+
         dizimo.setMembro(dizimoAtualizado.getMembro());
         dizimo.setData(dizimoAtualizado.getData());
         dizimo.setValor(dizimoAtualizado.getValor());
+
         return dizimoRepository.save(dizimo);
     }
 
