@@ -21,10 +21,20 @@ public class DizimoService {
     }
 
     public DizimoEntity atualizarDizimo(Long id, DizimoEntity dizimoAtualizado){
-        DizimoEntity dizimo = dizimoRepository.findById(id).orElse(null);
+        DizimoEntity dizimo = getDizimoId(id);
         dizimo.setMembro(dizimoAtualizado.getMembro());
         dizimo.setData(dizimoAtualizado.getData());
         dizimo.setValor(dizimoAtualizado.getValor());
         return dizimoRepository.save(dizimo);
+    }
+
+    public DizimoEntity criarDizimo(DizimoEntity dizimo){
+        dizimo.setId(null);
+        return dizimoRepository.save(dizimo);
+    }
+
+    public void deletarDizimo(Long id){
+        DizimoEntity dizimo = getDizimoId(id);
+        dizimoRepository.deleteById(dizimo.getId());
     }
 }
