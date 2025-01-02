@@ -132,29 +132,26 @@
                     <th scope="col">NASCIMENTO</th>
                     <th scope="col">CARGO</th>
                     <th scope="col">OPERAÇÕES</th>
+                    <th scope="col">ARQUIVADO</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>05/06/1989</td>
-                    <td>Líder do Ministério de Adolescentes</td>
+                <tr th:each="m : ${membrosLista}">
+                    <th scope="row" th:text="${m.id}"></th>
+                    <td th:text="${m.nome}"></td>
+                    <td th:text="${m.nascimento}"></td>
+                    <td th:text="${m.cargo}"></td>
+                    <td th:text="${m.arquivado}"></td>
                     <td>
-                        <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#meuModal">Arquivar</a>
+                        <!--<a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#meuModal">rquivar</a>-->
+                        <form th:action="@{/arquivar/{id}(id=${m.id})" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#meuModal">Arquivar</button>
+                        </form>
                         <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModalAtualizar" >Atualizar</a>
-                        <a class="btn btn-danger">Excluir</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>04/08/1965</td>
-                    <td>Líder do Ministério de Libertação</td>
-                    <td>
-                        <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#meuModal">Arquivar</a>
-                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModalAtualizar" >Atualizar</a>
-                        <a class="btn btn-danger">Excluir</a>
+                        <!-- Formulário de exclusão -->
+                        <form th:action="@{/deletar/{id}(id=${m.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>

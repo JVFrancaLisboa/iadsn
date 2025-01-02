@@ -55,4 +55,12 @@ public class MembroService {
         MembroEntity membro = getMembroId(id);
         membroRepository.deleteById(membro.getId());
     }
+
+    public MembroEntity arquivarMembroId(Long id){
+        MembroEntity membro = getMembroId(id);
+        if (membro != null && !membro.isArquivado()){
+            membro.setArquivado(true);
+        }
+        return membro;
+    }
 }

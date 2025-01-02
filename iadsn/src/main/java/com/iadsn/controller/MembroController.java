@@ -18,12 +18,25 @@ public class MembroController {
     @GetMapping("/membros")
     public String membros(Model model) {
         model.addAttribute("membro", new MembroEntity());
+        model.addAttribute("membrosLista", membroService.getMembrosList());
         return "fragments/membros :: content";
     }
 
     @PostMapping("salvar-membro")
     public String salvarMembro(@ModelAttribute MembroEntity membro) {
         membroService.criarMembro(membro);
+        return "home";
+    }
+
+    @PostMapping("deletar/{id}")
+    public String deletarMembro(@PathVariable Long id){
+        membroService.deletarMembro(id);
+        return "home";
+    }
+
+    @PostMapping("arquivar/{id}")
+    public String arquivarMembro(@PathVariable Long id){
+        membroService.arquivarMembroId(id);
         return "home";
     }
 }
