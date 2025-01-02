@@ -9,7 +9,7 @@
 <div th:fragment="content">
     <div class="container fundo-2">
         <h1 class="text-center mt-4">Cadastro de Membros</h1>
-        <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
+        <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate  th:action="@{/salvar-membro}" method="post" enctype="multipart/form-data">
             <!-- Foto -->
             <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
             <div class="col-12 text-center">
@@ -19,100 +19,100 @@
                 <br>
                 <label class="btn btn-outline-primary btn-sm">
                     Procurar Foto
-                    <input type="file" class="d-none" onchange="displaySelectedImage(event, 'selectedImage')"/>
+                    <input th:field="${membro.multipartFile}" type="file" class="d-none" onchange="displaySelectedImage(event, 'selectedImage')"/>
                 </label>
             </div>
 
             <!-- Dados Pessoais -->
             <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="validationCustom01" required>
+                <input th:field="${membro.nome}" type="text" class="form-control" id="validationCustom01" required>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">Nascimento</label>
-                <input type="date" class="form-control" id="validationCustom02" required>
+                <input th:field="${membro.nascimento}" type="date" class="form-control" id="validationCustom02" required>
             </div>
             <div class="col-md-6">
                 <label for="validationCustomUsername" class="form-label">Email (Opcional)</label>
                 <div class="input-group">
                     <span class="input-group-text">@</span>
-                    <input type="email" class="form-control" id="validationCustomUsername">
+                    <input th:field="${membro.email}" type="email" class="form-control" id="validationCustomUsername">
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom03" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="validationCustom03" required>
+                <input th:field="${membro.cpf}" type="text" class="form-control" id="validationCustom03" required>
                 <small class="text-muted">Exemplo: 123.456.789-12</small>
             </div>
 
             <!-- Informações Adicionais -->
             <div class="col-md-6">
                 <label for="validationCustom04" class="form-label">Sexo</label>
-                <select class="form-select" id="validationCustom04" required>
-                    <option selected value="m">Masculino</option>
-                    <option value="f">Feminino</option>
+                <select th:field="${membro.sexo}" class="form-select" id="validationCustom04" required>
+                    <option selected value="MASCULINO">Masculino</option>
+                    <option value="FEMININO">Feminino</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="validationCustom05" class="form-label">Status Civil</label>
-                <select class="form-select" id="validationCustom05" required>
-                    <option selected value="casado">Casado(a)</option>
-                    <option value="solteiro">Solteiro(a)</option>
-                    <option value="divorciado">Divorciado(a)</option>
-                    <option value="viuvo">Viúvo(a)</option>
-                    <option value="separado">Separado(a)</option>
+                <select th:field="${membro.statusCivil}" class="form-select" id="validationCustom05" required>
+                    <option selected value="CASADO">Casado(a)</option>
+                    <option value="SOLTEIRO">Solteiro(a)</option>
+                    <option value="DIVORCIADO">Divorciado(a)</option>
+                    <option value="VIUVO">Viúvo(a)</option>
+                    <option value="SEPARADO">Separado(a)</option>
                 </select>
             </div>
             <div class="col-12">
                 <label for="validationCustom08" class="form-label">Cargo</label>
-                <select class="form-select" id="validationCustom08" required>
-                    <option selected value="">Membro</option>
-                    <option value="">Pastor Presidente</option>
-                    <option value="">Co-Pastor</option>
-                    <option value="">Pastor</option>
-                    <option value="">Presbítero</option>
-                    <option value="">Evangelista</option>
-                    <option value="">Missionário(a)</option>
-                    <option value="">Diácono/Diaconisa</option>
-                    <option value="">Líder do Ministério de Louvor</option>
-                    <option value="">Músico</option>
-                    <option value="">Cantor</option>
-                    <option value="">Líder do Ministério de Jovens</option>
-                    <option value="">Líder do Ministério Infantil</option>
-                    <option value="">Líder do Ministério de Adolescentes</option>
-                    <option value="">Líder do Ministério de Casais</option>
-                    <option value="">Líder do Ministério de Mulheres</option>
-                    <option value="">Líder do Ministério de Homens</option>
-                    <option value="">Líder de Missões</option>
-                    <option value="">Líder de Intercessão</option>
-                    <option value="">Conselheiro Espiritual</option>
-                    <option value="">Secretário(a) da Igreja</option>
-                    <option value="">Tesoureiro(a)</option>
-                    <option value="">Contador(a)</option>
-                    <option value="">Zelador(a)</option>
-                    <option value="">Recepcionista</option>
-                    <option value="">Coordenador de Eventos</option>
-                    <option value="">Comunicação</option>
-                    <option value="">Obreiro(a)</option>
-                    <option value="">Dirigente de Congregação</option>
-                    <option value="">Professor(a) da Escola Bíblica Dominical (EBD)</option>
-                    <option value="">Líder do Ministério de Libertação</option>
-                    <option value="">Líder de Assistência Social</option>
-                    <option value="">Ministro da Palavra</option>
-                    <option value="">Presidente da Convenção Estadual/Regional</option>
-                    <option value="">Superintendente de Campo</option>
-                    <option value="">Coordenador Regional de Jovens, Missões, etc.</option>
+                <select th:field="${membro.cargo}" class="form-select" id="validationCustom08" required>
+                    <option selected value="MEMBRO">Membro</option>
+                    <option value="PASTOR_PRESIDENTE">Pastor Presidente</option>
+                    <option value="CO_PASTOR">Co-Pastor</option>
+                    <option value="PASTOR">Pastor</option>
+                    <option value="PRESBITERO">Presbítero</option>
+                    <option value="EVANGELISTA">Evangelista</option>
+                    <option value="MISSIONARIO">Missionário(a)</option>
+                    <option value="DIACONO">Diácono/Diaconisa</option>
+                    <option value="LIDER_LOUVOR">Líder do Ministério de Louvor</option>
+                    <option value="MUSICO">Músico</option>
+                    <option value="CANTOR">Cantor</option>
+                    <option value="LIDER_JOVENS">Líder do Ministério de Jovens</option>
+                    <option value="LIDER_INFANTIL">Líder do Ministério Infantil</option>
+                    <option value="LIDER_ADOLESCENTES">Líder do Ministério de Adolescentes</option>
+                    <option value="LIDER_CASAIS">Líder do Ministério de Casais</option>
+                    <option value="LIDER_MULHERES">Líder do Ministério de Mulheres</option>
+                    <option value="LIDER_HOMENS">Líder do Ministério de Homens</option>
+                    <option value="LIDER_MISSOES">Líder de Missões</option>
+                    <option value="LIDER_INTERCESSAO">Líder de Intercessão</option>
+                    <option value="CONSELHEIRO_ESPIRITUAL">Conselheiro Espiritual</option>
+                    <option value="SECRETARIO">Secretário(a) da Igreja</option>
+                    <option value="TESOUREIRO">Tesoureiro(a)</option>
+                    <option value="CONTADOR">Contador(a)</option>
+                    <option value="ZELADOR">Zelador(a)</option>
+                    <option value="RECEPCIONISTA">Recepcionista</option>
+                    <option value="COORDENADOR_EVENTOS">Coordenador de Eventos</option>
+                    <option value="COMUNICACAO">Comunicação</option>
+                    <option value="OBREIRO">Obreiro(a)</option>
+                    <option value="DIRIGENTE_CONGREGACAO">Dirigente de Congregação</option>
+                    <option value="PROFESSOR_EBD">Professor(a) da Escola Bíblica Dominical (EBD)</option>
+                    <option value="LIDER_LIBERTACAO">Líder do Ministério de Libertação</option>
+                    <option value="LIDER_ASSISTENCIA_SOCIAL">Líder de Assistência Social</option>
+                    <option value="MINISTRO_PALAVRA">Ministro da Palavra</option>
+                    <option value="PRESIDENTE_CONVENCAO_ESTADUAL">Presidente da Convenção Estadual/Regional</option>
+                    <option value="SUPERINTENDENTE_CAMPO">Superintendente de Campo</option>
+                    <option value="COORDENADOR_REGIONAL">Coordenador Regional de Jovens</option>
                 </select>
             </div>
 
             <!-- Contato -->
             <div class="col-md-8">
                 <label for="validationCustom06" class="form-label">Endereço</label>
-                <input type="text" class="form-control" id="validationCustom06" required>
+                <input th:field="${membro.endereco}" type="text" class="form-control" id="validationCustom06" required>
             </div>
             <div class="col-md-4">
                 <label for="validationCustom07" class="form-label">Telefone</label>
-                <input type="text" class="form-control" id="validationCustom07" required>
+                <input th:field="${membro.telefone}" type="text" class="form-control" id="validationCustom07" required>
                 <small class="text-muted">Exemplo: (61)912457823</small>
             </div>
 
@@ -160,7 +160,6 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
 </body>

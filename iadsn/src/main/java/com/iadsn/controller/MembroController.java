@@ -3,23 +3,27 @@ package com.iadsn.controller;
 import com.iadsn.entities.MembroEntity;
 import com.iadsn.services.MembroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/membros_api")
+import java.io.IOException;
+
+@Controller
 public class MembroController {
 
     @Autowired
     MembroService membroService;
 
-    @PostMapping("/salvar")
-    public ResponseEntity<MembroEntity> salvarMembro(@RequestBody MembroEntity membro){
-        var membroCriado = membroService.criarMembro(membro);
-        return new ResponseEntity<>(membroCriado, HttpStatus.OK);
+    @GetMapping("/membros")
+    public String membros(Model model) {
+        model.addAttribute("membro", new MembroEntity());
+        return "fragments/membros :: content";
+    }
+
+    @PostMapping("salvar-membro")
+    public String salvarMembro(@ModelAttribute MembroEntity membro) {
+        membroService.criarMembro(membro);
+        return "home";
     }
 }
