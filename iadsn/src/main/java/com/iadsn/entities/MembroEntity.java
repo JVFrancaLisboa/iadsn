@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,7 @@ public class MembroEntity {
     private Long id;
     @NotBlank(message = "Campo não pode ser nulo")
     private String nome;
-    private Date nascimento;
+    private String nascimento;
     @Email(message = "insira um E-Mail válido")
     private String email;
     @CPF(message = "Insira um CPF válido")
@@ -41,6 +42,8 @@ public class MembroEntity {
     private String endereco;
     private String telefone;
     private boolean arquivado = false;
+    @Transient //Indica que esse atributo não será persistido ao banco
+    private MultipartFile multipartFile;
     @Lob
     private byte[] foto;
     @OneToMany(mappedBy = "membro")

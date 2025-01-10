@@ -5,6 +5,7 @@ import com.iadsn.repository.MembroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -39,11 +40,27 @@ public class MembroService {
 
     public MembroEntity criarMembro(MembroEntity membro){
         membro.setId(null);
+        if(membro.getMultipartFile() != null && !membro.getMultipartFile().isEmpty()){
+            try{
+                membro.setFoto(membro.getMultipartFile().getBytes());
+            }catch (IOException e){
+                System.out.println("Falha ao salvar foto no banco de dados");
+                e.printStackTrace();
+            }
+        }
         return membroRepository.save(membro);
     }
 
     public void deletarMembro(Long id){
         MembroEntity membro = getMembroId(id);
         membroRepository.deleteById(membro.getId());
+    }
+
+    public MembroEntity arquivarMembroId(Long id){
+        MembroEntity membro = getMembroId(id);
+        if (membro != null && !membro.isArquivado()){
+            membro.setArquivado(true);
+        }
+        return membro;
     }
 }
