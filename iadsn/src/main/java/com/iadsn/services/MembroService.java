@@ -60,7 +60,9 @@ public class MembroService {
         MembroEntity membro = getMembroId(id);
         if (membro != null && !membro.isArquivado()){
             membro.setArquivado(true);
+            membroRepository.save(membro);
+            return membro;
         }
-        return membro;
+        return null;
     }
 }

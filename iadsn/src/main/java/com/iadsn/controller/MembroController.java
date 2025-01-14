@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @Controller
+@RequestMapping("/membros")
 public class MembroController {
 
     @Autowired
     MembroService membroService;
 
-    @GetMapping("/membros")
+    @GetMapping("/membrosInterface")
     public String membros(Model model) {
         model.addAttribute("membro", new MembroEntity());
         model.addAttribute("membrosLista", membroService.getMembrosList());
@@ -35,7 +36,7 @@ public class MembroController {
     }
 
     @PostMapping("arquivar/{id}")
-    public String arquivarMembro(@PathVariable Long id){
+    public String arquivarMembro(@PathVariable(value = "id") Long id){
         membroService.arquivarMembroId(id);
         return "home";
     }
