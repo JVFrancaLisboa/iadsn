@@ -9,7 +9,7 @@
 <div th:fragment="content">
     <div class="container fundo-2">
         <h1 class="text-center mt-4">Cadastro de Membros</h1>
-        <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate  th:action="@{/salvar-membro}" method="post" enctype="multipart/form-data">
+        <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate  th:action="@{membros/salvar-membro}" method="post" enctype="multipart/form-data">
             <!-- Foto -->
             <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
             <div class="col-12 text-center">
@@ -131,8 +131,8 @@
                     <th scope="col">NOME</th>
                     <th scope="col">NASCIMENTO</th>
                     <th scope="col">CARGO</th>
-                    <th scope="col">OPERAÇÕES</th>
                     <th scope="col">ARQUIVADO</th>
+                    <th scope="col">OPERAÇÕES</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -143,14 +143,15 @@
                     <td th:text="${m.cargo}"></td>
                     <td th:text="${m.arquivado}"></td>
                     <td>
-                        <!--<a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#meuModal">rquivar</a>-->
-                        <form th:action="@{/arquivar/{id}(id=${m.id})" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#meuModal">Arquivar</button>
+                        <!-- Formulário de atualização -->
+                        <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#meuModalAtualizar">Atualizar</a>
+                        <!-- Formulário de arquivamento -->
+                        <form th:action="@{/membros/arquivar/{id}(id=${m.id})}" method="post">
+                            <button type="submit" class="btn btn-outline-warning">Arquivar</button>
                         </form>
-                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModalAtualizar" >Atualizar</a>
                         <!-- Formulário de exclusão -->
-                        <form th:action="@{/deletar/{id}(id=${m.id})}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        <form th:action="@{/membros/deletar/{id}(id=${m.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-outline-danger">Excluir</button>
                         </form>
                     </td>
                 </tr>
