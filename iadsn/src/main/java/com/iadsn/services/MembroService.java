@@ -38,6 +38,14 @@ public class MembroService {
         return membroRepository.findAll();
     }
 
+    public List<MembroEntity> getMembrosArquivados(){
+        List<MembroEntity> membrosArquivados = membroRepository.findMembrosArquivados();
+        if(!membrosArquivados.isEmpty()){
+            return membrosArquivados;
+        }
+        return null;
+    }
+
     public MembroEntity criarMembro(MembroEntity membro){
         membro.setId(null);
         if(membro.getMultipartFile() != null && !membro.getMultipartFile().isEmpty()){
