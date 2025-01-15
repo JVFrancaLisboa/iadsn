@@ -127,21 +127,17 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">NOME</th>
                     <th scope="col">NASCIMENTO</th>
                     <th scope="col">CARGO</th>
-                    <th scope="col">ARQUIVADO</th>
                     <th scope="col">OPERAÇÕES</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="m : ${membrosLista}">
-                    <th scope="row" th:text="${m.id}"></th>
                     <td th:text="${m.nome}"></td>
                     <td th:text="${m.nascimento}"></td>
                     <td th:text="${m.cargo}"></td>
-                    <td th:text="${m.arquivado}"></td>
                     <td>
                         <!-- Formulário de atualização -->
                         <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#meuModalAtualizar">Atualizar</a>
@@ -172,7 +168,31 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">NOME</th>
+                                    <th scope="col">CARGO</th>
+                                    <th scope="col">OPERAÇÕES</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="m : ${membrosArquivados}">
+                                    <td th:text="${m.nome}"></td>
+                                    <td th:text="${m.cargo}"></td>
+                                    <td>
+                                        <!-- Formulário de arquivamento -->
+                                        <form th:action="@{/membros/desarquivar/{id}(id=${m.id})}" method="post">
+                                            <button type="submit" class="btn btn-outline-warning">Desarquivar</button>
+                                        </form>
+                                        <!-- Formulário de exclusão -->
+                                        <form th:action="@{/membros/deletar/{id}(id=${m.id})}" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
