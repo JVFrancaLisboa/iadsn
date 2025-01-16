@@ -128,7 +128,6 @@
                 <thead>
                 <tr>
                     <th scope="col">NOME</th>
-                    <th scope="col">NASCIMENTO</th>
                     <th scope="col">CARGO</th>
                     <th scope="col">OPERAÇÕES</th>
                 </tr>
@@ -136,19 +135,22 @@
                 <tbody>
                 <tr th:each="m : ${membrosLista}">
                     <td th:text="${m.nome}"></td>
-                    <td th:text="${m.nascimento}"></td>
                     <td th:text="${m.cargo}"></td>
                     <td>
-                        <!-- Formulário de atualização -->
-                        <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#meuModalAtualizar">Atualizar</a>
-                        <!-- Formulário de arquivamento -->
-                        <form th:action="@{/membros/arquivar/{id}(id=${m.id})}" method="post">
-                            <button type="submit" class="btn btn-outline-warning">Arquivar</button>
-                        </form>
-                        <!-- Formulário de exclusão -->
-                        <form th:action="@{/membros/deletar/{id}(id=${m.id})}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-outline-danger">Excluir</button>
-                        </form>
+                        <div class="container">
+                            <div class="row">
+                                <!-- Formulário de atualização -->
+                                <a class="btn btn-outline-primary col-sm-3" data-bs-toggle="modal" data-bs-target="#meuModalAtualizar">Atualizar</a>
+                                <!-- Formulário de arquivamento -->
+                                <form class="col-sm-3" th:action="@{/membros/arquivar/{id}(id=${m.id})}" method="post">
+                                    <button type="submit" class="btn btn-outline-warning">Arquivar</button>
+                                </form>
+                                <!-- Formulário de exclusão -->
+                                <form class="col-sm-3" th:action="@{/membros/deletar/{id}(id=${m.id})}" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                                </form>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -159,12 +161,12 @@
                 Ver membros arquivados
             </button>
 
-            <!-- Modal -->
+            <!-- Modal de Arquivados -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Membros arquivados</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -172,23 +174,25 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">NOME</th>
-                                    <th scope="col">CARGO</th>
                                     <th scope="col">OPERAÇÕES</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="m : ${membrosArquivados}">
                                     <td th:text="${m.nome}"></td>
-                                    <td th:text="${m.cargo}"></td>
                                     <td>
-                                        <!-- Formulário de arquivamento -->
-                                        <form th:action="@{/membros/desarquivar/{id}(id=${m.id})}" method="post">
-                                            <button type="submit" class="btn btn-outline-warning">Desarquivar</button>
-                                        </form>
-                                        <!-- Formulário de exclusão -->
-                                        <form th:action="@{/membros/deletar/{id}(id=${m.id})}" method="post" style="display:inline;">
-                                            <button type="submit" class="btn btn-outline-danger">Excluir</button>
-                                        </form>
+                                        <div class="container">
+                                            <div class="row">
+                                                <!-- Formulário de arquivamento -->
+                                                <form class="col-sm-6" th:action="@{/membros/desarquivar/{id}(id=${m.id})}" method="post">
+                                                    <button type="submit" class="btn btn-outline-warning">Desarquivar</button>
+                                                </form>
+                                                <!-- Formulário de exclusão -->
+                                                <form class="col-sm-6" th:action="@{/membros/deletar/{id}(id=${m.id})}" method="post" style="display:inline;">
+                                                    <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -196,7 +200,135 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Atualização -->
+            <div class="modal fade" id="meuModalAtualizar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel">Dados a serem atualizados: </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate  th:action="@{membros/salvar-membro}" method="post" enctype="multipart/form-data">
+                                <!-- Foto -->
+                                <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
+                                <div class="col-12 text-center">
+                                    <img id="selectedImageaAtual" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                                         alt="example placeholder" class="rounded-circle mb-3"
+                                         style="width: 120px; height: 120px; object-fit: cover;"/>
+                                    <br>
+                                    <label class="btn btn-outline-primary btn-sm">
+                                        Procurar Foto
+                                        <input th:field="${membro.multipartFile}" type="file" class="d-none" onchange="displaySelectedImage(event, 'selectedImage')"/>
+                                    </label>
+                                </div>
+
+                                <!-- Dados Pessoais -->
+                                <div class="col-md-6">
+                                    <label for="validationCustom01" class="form-label">Nome</label>
+                                    <input th:field="${membro.nome}" type="text" class="form-control" id="validationCustom1" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustom02" class="form-label">Nascimento</label>
+                                    <input th:field="${membro.nascimento}" type="date" class="form-control" id="validationCustom2" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustomUsername" class="form-label">Email (Opcional)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">@</span>
+                                        <input th:field="${membro.email}" type="email" class="form-control" id="validationCustomUser">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustom03" class="form-label">CPF</label>
+                                    <input th:field="${membro.cpf}" type="text" class="form-control" id="validationCustom3" required>
+                                    <small class="text-muted">Exemplo: 123.456.789-12</small>
+                                </div>
+
+                                <!-- Informações Adicionais -->
+                                <div class="col-md-6">
+                                    <label for="validationCustom04" class="form-label">Sexo</label>
+                                    <select th:field="${membro.sexo}" class="form-select" id="validationCustom4" required>
+                                        <option selected value="MASCULINO">Masculino</option>
+                                        <option value="FEMININO">Feminino</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustom05" class="form-label">Status Civil</label>
+                                    <select th:field="${membro.statusCivil}" class="form-select" id="validationCustom5" required>
+                                        <option selected value="CASADO">Casado(a)</option>
+                                        <option value="SOLTEIRO">Solteiro(a)</option>
+                                        <option value="DIVORCIADO">Divorciado(a)</option>
+                                        <option value="VIUVO">Viúvo(a)</option>
+                                        <option value="SEPARADO">Separado(a)</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="validationCustom08" class="form-label">Cargo</label>
+                                    <select th:field="${membro.cargo}" class="form-select" id="validationCustom8" required>
+                                        <option selected value="MEMBRO">Membro</option>
+                                        <option value="PASTOR_PRESIDENTE">Pastor Presidente</option>
+                                        <option value="CO_PASTOR">Co-Pastor</option>
+                                        <option value="PASTOR">Pastor</option>
+                                        <option value="PRESBITERO">Presbítero</option>
+                                        <option value="EVANGELISTA">Evangelista</option>
+                                        <option value="MISSIONARIO">Missionário(a)</option>
+                                        <option value="DIACONO">Diácono/Diaconisa</option>
+                                        <option value="LIDER_LOUVOR">Líder do Ministério de Louvor</option>
+                                        <option value="MUSICO">Músico</option>
+                                        <option value="CANTOR">Cantor</option>
+                                        <option value="LIDER_JOVENS">Líder do Ministério de Jovens</option>
+                                        <option value="LIDER_INFANTIL">Líder do Ministério Infantil</option>
+                                        <option value="LIDER_ADOLESCENTES">Líder do Ministério de Adolescentes</option>
+                                        <option value="LIDER_CASAIS">Líder do Ministério de Casais</option>
+                                        <option value="LIDER_MULHERES">Líder do Ministério de Mulheres</option>
+                                        <option value="LIDER_HOMENS">Líder do Ministério de Homens</option>
+                                        <option value="LIDER_MISSOES">Líder de Missões</option>
+                                        <option value="LIDER_INTERCESSAO">Líder de Intercessão</option>
+                                        <option value="CONSELHEIRO_ESPIRITUAL">Conselheiro Espiritual</option>
+                                        <option value="SECRETARIO">Secretário(a) da Igreja</option>
+                                        <option value="TESOUREIRO">Tesoureiro(a)</option>
+                                        <option value="CONTADOR">Contador(a)</option>
+                                        <option value="ZELADOR">Zelador(a)</option>
+                                        <option value="RECEPCIONISTA">Recepcionista</option>
+                                        <option value="COORDENADOR_EVENTOS">Coordenador de Eventos</option>
+                                        <option value="COMUNICACAO">Comunicação</option>
+                                        <option value="OBREIRO">Obreiro(a)</option>
+                                        <option value="DIRIGENTE_CONGREGACAO">Dirigente de Congregação</option>
+                                        <option value="PROFESSOR_EBD">Professor(a) da Escola Bíblica Dominical (EBD)</option>
+                                        <option value="LIDER_LIBERTACAO">Líder do Ministério de Libertação</option>
+                                        <option value="LIDER_ASSISTENCIA_SOCIAL">Líder de Assistência Social</option>
+                                        <option value="MINISTRO_PALAVRA">Ministro da Palavra</option>
+                                        <option value="PRESIDENTE_CONVENCAO_ESTADUAL">Presidente da Convenção Estadual/Regional</option>
+                                        <option value="SUPERINTENDENTE_CAMPO">Superintendente de Campo</option>
+                                        <option value="COORDENADOR_REGIONAL">Coordenador Regional de Jovens</option>
+                                    </select>
+                                </div>
+
+                                <!-- Contato -->
+                                <div class="col-md-8">
+                                    <label for="validationCustom06" class="form-label">Endereço</label>
+                                    <input th:field="${membro.endereco}" type="text" class="form-control" id="validationCustom6" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom07" class="form-label">Telefone</label>
+                                    <input th:field="${membro.telefone}" type="text" class="form-control" id="validationCustom7" required>
+                                    <small class="text-muted">Exemplo: (61)912457823</small>
+                                </div>
+
+                                <!-- Botão -->
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" type="submit">Cadastrar Membro</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
