@@ -46,6 +46,14 @@ public class MembroService {
         return null;
     }
 
+    public List<MembroEntity> getMembrosDesarquivados(){
+        List<MembroEntity> membrosDesarquivados = membroRepository.findMembrosDesarquivados();
+        if(!membrosDesarquivados.isEmpty()){
+            return membrosDesarquivados;
+        }
+        return null;
+    }
+
     public MembroEntity criarMembro(MembroEntity membro){
         membro.setId(null);
         if(membro.getMultipartFile() != null && !membro.getMultipartFile().isEmpty()){
@@ -68,6 +76,16 @@ public class MembroService {
         MembroEntity membro = getMembroId(id);
         if (membro != null && !membro.isArquivado()){
             membro.setArquivado(true);
+            membroRepository.save(membro);
+            return membro;
+        }
+        return null;
+    }
+
+    public MembroEntity desarquivarMembroId(Long id){
+        MembroEntity membro = getMembroId(id);
+        if (membro != null && membro.isArquivado()){
+            membro.setArquivado(false);
             membroRepository.save(membro);
             return membro;
         }
