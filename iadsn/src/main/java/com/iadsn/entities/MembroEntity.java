@@ -1,5 +1,7 @@
 package com.iadsn.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.iadsn.entities.enums.Cargo;
 import com.iadsn.entities.enums.Sexo;
 import com.iadsn.entities.enums.StatusCivil;
@@ -11,6 +13,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class MembroEntity {
     private Long id;
     @NotBlank(message = "Campo não pode ser nulo")
     private String nome;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private String nascimento;
     @Email(message = "insira um E-Mail válido")
     private String email;
@@ -46,6 +50,7 @@ public class MembroEntity {
     private MultipartFile multipartFile;
     @Lob
     private byte[] foto;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @OneToMany(mappedBy = "membro")
-    private List<DizimoEntity> dizimos;
+    private List<DizimoEntity> dizimos = new ArrayList<>();
 }
