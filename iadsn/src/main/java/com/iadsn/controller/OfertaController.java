@@ -17,12 +17,6 @@ public class OfertaController {
     @Autowired
     OfertaService ofertaService;
 
-    @GetMapping("/movimentacoes")
-    public String getMovs(Model model){
-        model.addAttribute("oferta", new OfertaEntity());
-        return "fragments/movimentacoes :: content";
-    }
-
     @PostMapping("/save-oferta")
     public String salvarOferta(@ModelAttribute OfertaEntity oferta){
         ofertaService.criarOferta(oferta);
