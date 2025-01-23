@@ -10,6 +10,7 @@
 <body>
   <div th:fragment="content">
     <div class="container fundo-2">
+      <!-- Aba de Dizimos -->
       <div class="dizimos">
         <h1 class="text-center mt-4">Entrada de dízimos</h1>
         <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
@@ -31,7 +32,7 @@
             <label for="moneyInput" class="form-label">Valor (R$)</label>
             <div class="input-group">
               <span class="input-group-text">R$</span>
-              <input type="number" id="moneyInput" class="form-control" placeholder="0.00" step="0.01" min="0">
+              <input type="number" id="moneyInput1" class="form-control" placeholder="0.00" step="0.01" min="0">
             </div>
           </div>
           <div class="col-md-06">
@@ -42,19 +43,20 @@
       <hr>
       <hr>
       <div class="oferta">
+        <!-- Aba de Ofertas -->
         <h1 class="text-center mt-4">Entrada de ofertas</h1>
-        <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
+        <form th:action="@{ofertas/save-oferta}" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
           <!-- Data de entrada -->
           <div class="col-md-6">
             <label for="validationCustom02" class="form-label">Data de entrada: </label>
-            <input type="date" class="form-control" id="validationCustom02" required>
+            <input th:field="${oferta.data}" type="date" class="form-control" id="validationCustom2" required>
           </div>
           <!-- Valor -->
           <div class="col-md-6">
             <label for="moneyInput" class="form-label">Valor (R$)</label>
             <div class="input-group">
               <span class="input-group-text">R$</span>
-              <input type="number" id="moneyInput" class="form-control" placeholder="0.00" step="0.01" min="0">
+              <input th:field="${oferta.valor}" type="number" id="moneyInput2" class="form-control" placeholder="0.00" step="0.01" min="0">
             </div>
           </div>
           <div class="col-md-06">
@@ -65,6 +67,7 @@
       <hr>
       <hr>
       <div class="gastos">
+        <!-- Aba de Gastos -->
         <h1 class="text-center mt-4">Gastos/Saídas</h1>
         <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
           <!-- Foto da nota fiscal -->
