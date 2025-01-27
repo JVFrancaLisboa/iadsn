@@ -72,7 +72,7 @@
         <div class="gastos">
             <!-- Aba de Gastos -->
             <h1 class="text-center mt-4">Gastos/Saídas</h1>
-            <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
+            <form th:action="@" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
                 <!-- Foto da nota fiscal -->
                 <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
                 <h3 class="text-center mt-4">Nota Fiscal:</h3>
@@ -83,20 +83,20 @@
                     <br>
                     <label class="btn btn-outline-primary btn-sm">
                         Nota Fiscal
-                        <input type="file" class="d-none" onchange="displaySelectedImage(event, 'selectedImage')"/>
+                        <input th:field="${gasto.notaFiscal}" type="file" class="d-none" onchange="displaySelectedImage(event, 'selectedImage')"/>
                     </label>
                 </div>
                 <!-- Documentação de gasto -->
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Documentação de Gasto: </label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea th:field="${gasto.descricao}" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <!-- Valor -->
                 <div class="col-md-12">
                     <label for="moneyInput" class="form-label">Valor (R$)</label>
                     <div class="input-group">
                         <span class="input-group-text">R$</span>
-                        <input type="number" id="moneyInput" class="form-control" placeholder="0.00" step="0.01"
+                        <input th:field="${gasto.valor}" type="number" id="moneyInput" class="form-control" placeholder="0.00" step="0.01"
                                min="0">
                     </div>
                 </div>
