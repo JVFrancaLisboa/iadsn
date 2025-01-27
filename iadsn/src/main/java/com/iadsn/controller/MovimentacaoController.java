@@ -1,9 +1,11 @@
 package com.iadsn.controller;
 
 import com.iadsn.entities.DizimoEntity;
+import com.iadsn.entities.GastoEntity;
 import com.iadsn.entities.MembroEntity;
 import com.iadsn.entities.OfertaEntity;
 import com.iadsn.services.DizimoService;
+import com.iadsn.services.GastoService;
 import com.iadsn.services.MembroService;
 import com.iadsn.services.OfertaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/movimentacao")
+@RequestMapping("/movimentacoes")
 public class MovimentacaoController {
 
     @Autowired
@@ -20,7 +22,7 @@ public class MovimentacaoController {
     @Autowired
     OfertaService ofertaService;
     @Autowired
-    MembroService membroService;
+    GastoService gastoService;
 
     // Realicionados aos Dizimos
     @PostMapping("/save-dizimo")
@@ -39,5 +41,9 @@ public class MovimentacaoController {
 
 
     // Realicionados aos Gastos
-    
+    @PostMapping("/save-gasto")
+    public String salvaGasto(@ModelAttribute GastoEntity gasto){
+        gastoService.criarGasto(gasto);
+        return "home";
+    }
 }

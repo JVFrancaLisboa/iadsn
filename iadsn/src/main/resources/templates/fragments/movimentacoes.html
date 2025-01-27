@@ -13,7 +13,7 @@
         <!-- Aba de Dizimos -->
         <div class="dizimos">
             <h1 class="text-center mt-4">Entrada de dízimos</h1>
-            <form th:action="@{dizimos/save-dizimo}" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
+            <form th:action="@{movimentacoes/save-dizimo}" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
                 <!-- Pessoa dizimista -->
                 <div class="col-md-6">
                     <label for="validationCustom04" class="form-label">Pessoa Dizimista: </label>
@@ -46,7 +46,7 @@
         <div class="oferta">
             <!-- Aba de Ofertas -->
             <h1 class="text-center mt-4">Entrada de ofertas</h1>
-            <form th:action="@{ofertas/save-oferta}" method="post"
+            <form th:action="@{movimentacoes/save-oferta}" method="post"
                   class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
                 <!-- Data de entrada -->
                 <div class="col-md-6">
@@ -72,7 +72,7 @@
         <div class="gastos">
             <!-- Aba de Gastos -->
             <h1 class="text-center mt-4">Gastos/Saídas</h1>
-            <form th:action="@" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
+            <form th:action="@{movimentacoes/save-gasto}" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
                 <!-- Foto da nota fiscal -->
                 <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
                 <h3 class="text-center mt-4">Nota Fiscal:</h3>
