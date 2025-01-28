@@ -19,7 +19,7 @@ public class DizimoEntity {
     @JoinColumn(name = "membro_id") // 'membro_id' definido como chave secundária no bd
     private MembroEntity membro; // Membro que está efetuando o dizimo
     @NotBlank(message = "Por favor preencha o campo 'Data'")
-    private Date data;
+    private String data;
     @PositiveOrZero(message = "O valor deve ser positivo")
     private BigDecimal valor;
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -18,7 +19,9 @@ public class GastoEntity {
     private String descricao;
     @PositiveOrZero(message = "O valor deve ser positivo")
     private BigDecimal valor;
+    @Transient //Indica que esse atributo não será persistido ao banco
+    private MultipartFile file;
     @Lob
-    @Column(name = "nota_fiscal")
+    @Column(name = "nota_fiscal", columnDefinition = "LONGBLOB")
     private byte[] notaFiscal;
 }

@@ -16,7 +16,7 @@ public class OfertaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Por favor preencha o campo 'Data'")
-    private Date data;
+    private String data;
     @PositiveOrZero(message = "O valor deve ser positivo")
     private BigDecimal valor;
 }
