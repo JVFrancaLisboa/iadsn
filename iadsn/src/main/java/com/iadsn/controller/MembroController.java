@@ -49,4 +49,10 @@ public class MembroController {
         membroService.desarquivarMembroId(id);
         return "home";
     }
+
+    @PostMapping("/atualizar-membro/{id}")
+    public String atualizarMembro(@PathVariable Long id, Model model){
+        model.addAttribute("membro", membroService.getMembroId(id));
+        return "atualizar-membro";
+    }
 }
