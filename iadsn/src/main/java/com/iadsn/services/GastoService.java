@@ -5,6 +5,7 @@ import com.iadsn.repository.GastoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -33,6 +34,14 @@ public class GastoService {
 
     public GastoEntity criarGasto(GastoEntity gasto){
         gasto.setId(null);
+        if(gasto.getFile() != null && !gasto.getFile().isEmpty()){
+            try{
+                gasto.setNotaFiscal(gasto.getFile().getBytes());
+            }catch (IOException e){
+                e.printStackTrace();
+                System.out.println("Não foi possível converter a imagem em bytes.");
+            }
+        }
         return gastoRepository.save(gasto);
     }
 

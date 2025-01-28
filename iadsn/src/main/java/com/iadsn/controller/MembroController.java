@@ -27,11 +27,8 @@ public class MembroController {
     @PostMapping("salvar-membro")
     public String salvarMembro(@ModelAttribute MembroEntity membro) {
         if (membro == null) return "home";
-        if(membro.getId() == null){
-            membroService.criarMembro(membro);
-        }else{
-            membroService.atualizarMembro(membro.getId(), membro);
-        }
+        if(membro.getId() == null) membroService.criarMembro(membro);
+        else membroService.atualizarMembro(membro.getId(), membro);
         return "home";
     }
 

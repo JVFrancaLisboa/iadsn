@@ -72,7 +72,7 @@
         <div class="gastos">
             <!-- Aba de Gastos -->
             <h1 class="text-center mt-4">Gastos/Saídas</h1>
-            <form th:action="@{movimentacoes/save-gasto}" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
+            <form th:action="@{movimentacoes/save-gasto}" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate enctype="multipart/form-data">
                 <!-- Foto da nota fiscal -->
                 <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
                 <h3 class="text-center mt-4">Nota Fiscal:</h3>
@@ -83,7 +83,7 @@
                     <br>
                     <label class="btn btn-outline-primary btn-sm">
                         Nota Fiscal
-                        <input th:field="${gasto.notaFiscal}" type="file" class="d-none" onchange="displaySelectedImage(event, 'selectedImage')"/>
+                        <input th:field="${gasto.file}" type="file" class="d-none" onchange="displaySelectedImage(event, 'selectedImage')"/>
                     </label>
                 </div>
                 <!-- Documentação de gasto -->

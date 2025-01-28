@@ -13,21 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MiscController {
 
-    @Autowired
-    MembroService membroService;
-
     @GetMapping("/")
     public String getHome(){
         return "home";
-    }
-
-    @GetMapping("/movimentacoes")
-    public String getMovs(Model model){
-        model.addAttribute("oferta", new OfertaEntity());
-        model.addAttribute("dizimo", new DizimoEntity());
-        model.addAttribute("gasto", new GastoEntity());
-        model.addAttribute("membros", membroService.getMembrosDesarquivados());
-        return "fragments/movimentacoes :: content";
     }
 
     @GetMapping("/about")

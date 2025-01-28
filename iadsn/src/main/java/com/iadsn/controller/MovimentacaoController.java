@@ -23,6 +23,17 @@ public class MovimentacaoController {
     OfertaService ofertaService;
     @Autowired
     GastoService gastoService;
+    @Autowired
+    MembroService membroService;
+
+    @GetMapping("/movimentacoesInterface")
+    public String getMovs(Model model){
+        model.addAttribute("oferta", new OfertaEntity());
+        model.addAttribute("dizimo", new DizimoEntity());
+        model.addAttribute("gasto", new GastoEntity());
+        model.addAttribute("membros", membroService.getMembrosDesarquivados());
+        return "fragments/movimentacoes :: content";
+    }
 
     // Realicionados aos Dizimos
     @PostMapping("/save-dizimo")
@@ -43,7 +54,9 @@ public class MovimentacaoController {
     // Realicionados aos Gastos
     @PostMapping("/save-gasto")
     public String salvaGasto(@ModelAttribute GastoEntity gasto){
-        gastoService.criarGasto(gasto);
+        if(gasto == null) return "home";
+        if(gasto.getId() == null) gastoService.criarGasto(gasto);
+        else gastoService.atualizarGasto(gasto.getId(), gasto);
         return "home";
     }
 }
