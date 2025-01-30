@@ -2,7 +2,10 @@ package com.iadsn.controller;
 
 import com.iadsn.entities.MembroEntity;
 import com.iadsn.services.MembroService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +28,10 @@ public class MembroController {
     }
 
     @PostMapping("salvar-membro")
-    public String salvarMembro(@ModelAttribute MembroEntity membro) {
+    public String salvarMembro(@Valid @ModelAttribute MembroEntity membro) {
         if (membro == null) return "home";
         if(membro.getId() == null) membroService.criarMembro(membro);
-        else membroService.atualizarMembro(membro.getId(), membro);
+        else membroService.atualizarMembro(membro.getId(), membro, membro.getMultipartFile());
         return "home";
     }
 

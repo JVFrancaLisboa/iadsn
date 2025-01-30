@@ -4,6 +4,7 @@ import com.iadsn.entities.MembroEntity;
 import com.iadsn.repository.MembroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,9 +18,14 @@ public class MembroService {
         return membroRepository.findById(id).orElse(null);
     }
 
-    public MembroEntity atualizarMembro(Long id, MembroEntity membroAtualizado){
+    public MembroEntity atualizarMembro(Long id, MembroEntity membroAtualizado, MultipartFile file) {
         MembroEntity membro = getMembroId(id);
 
+        if (membro == null) {
+            return null; // Ou lançar uma exceção
+        }
+
+        // Atualiza os campos básicos
         membro.setNome(membroAtualizado.getNome());
         membro.setNascimento(membroAtualizado.getNascimento());
         membro.setEmail(membroAtualizado.getEmail());
@@ -30,6 +36,16 @@ public class MembroService {
         membro.setEndereco(membroAtualizado.getEndereco());
         membro.setTelefone(membroAtualizado.getTelefone());
         membro.setArquivado(membroAtualizado.isArquivado());
+
+        // Processa a foto (se uma nova foi enviada)
+        if (file != null && !file.isEmpty()) {
+            try {
+                membro.setFoto(file.getBytes()); // Converte MultipartFile para byte[]
+            } catch (IOException e) {
+                System.out.println("Falha ao processar a foto");
+                e.printStackTrace();
+            }
+        } // Se nenhum arquivo for enviado, a foto existente é mantida
 
         return membroRepository.save(membro);
     }

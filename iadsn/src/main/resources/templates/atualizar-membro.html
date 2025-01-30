@@ -11,25 +11,30 @@
 <div class="container bg-dark">
     <div class="bg-light mx-auto">
         <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate
-              th:action="@{membros/salvar-membro}" method="post" enctype="multipart/form-data">
+              th:action="@{/membros/salvar-membro}" method="post" enctype="multipart/form-data">
             <h1 class="text-center">Atualizar</h1>
-            <h2 class="text-center" th:text="${membro.nome}"></h2>
+            <em><h2 class="text-center" th:text="${membro.nome}"></h2></em>
             <!-- Foto -->
             <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
             <div class="col-12 text-center">
-                <img id="selectedImageaAtual"
-                     src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                     alt="example placeholder" class="rounded-circle mb-3"
-                     style="width: 120px; height: 120px; object-fit: cover;"/>
+                <img id="selectedImage"
+                     th:src="${membro.foto != null} ? @{/membros_api/foto/{id}(id=${membro.id})} : 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg'"
+                     alt="Foto do membro"
+                     class="rounded-circle mb-3"
+                     style="width: 120px; height: 120px; object-fit: cover;"
+                     onerror="this.src='https://via.placeholder.com/120x120?text=Sem+Foto'"/>
                 <br>
                 <label class="btn btn-outline-primary btn-sm">
                     Procurar Foto
                     <input th:field="${membro.multipartFile}" type="file" class="d-none"
-                           onchange="displaySelectedImage(event, 'selectedImageaAtual')"/>
+                           onchange="displaySelectedImage(event, 'selectedImage')"/>
                 </label>
             </div>
 
             <!-- Dados Pessoais -->
+            <input th:field="${membro.id}" type="hidden" class="form-control"
+                   id="validationCustom"
+                   required>
             <div class="col-md-6">
                 <label class="form-label">Nome</label>
                 <input th:field="${membro.nome}" type="text" class="nome_atual form-control"
@@ -153,6 +158,6 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 <!-- Input de foto -->
-<script th:src="@{js/inputImage.js}"></script>
+<script th:src="@{/js/inputImage.js}"></script>
 </body>
 </html>
