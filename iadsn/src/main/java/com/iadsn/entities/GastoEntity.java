@@ -30,7 +30,7 @@ public class GastoEntity implements MovimentacaoFinanceira {
 
     @Override
     public String getNome() {
-        return descricao;
+        return "SAÍDA: "+descricao;
     }
 
     @Override
