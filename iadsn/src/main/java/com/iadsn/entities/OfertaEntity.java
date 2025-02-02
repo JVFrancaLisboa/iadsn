@@ -23,7 +23,7 @@ public class OfertaEntity implements MovimentacaoFinanceira {
 
     @Override
     public String getNome() {
-        return " ";
+        return "OFERTAS";
     }
 
     @Override
