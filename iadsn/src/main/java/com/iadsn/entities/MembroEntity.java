@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,7 +50,8 @@ public class MembroEntity {
     private MultipartFile multipartFile;
     @Lob
     private byte[] foto;
+    @ToString.Exclude
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @OneToMany(mappedBy = "membro")
+    @OneToMany(mappedBy = "membro", fetch = FetchType.EAGER)
     private List<DizimoEntity> dizimos = new ArrayList<>();
 }

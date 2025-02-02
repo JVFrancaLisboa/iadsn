@@ -91,6 +91,11 @@
                     <label for="exampleFormControlTextarea1" class="form-label">Documentação de Gasto: </label>
                     <textarea th:field="${gasto.descricao}" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
+                <!-- Data de entrada -->
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Data de entrada: </label>
+                    <input th:field="${gasto.data}" type="date" class="form-control" id="validationCustom" required>
+                </div>
                 <!-- Valor -->
                 <div class="col-md-12">
                     <label for="moneyInput" class="form-label">Valor (R$)</label>
