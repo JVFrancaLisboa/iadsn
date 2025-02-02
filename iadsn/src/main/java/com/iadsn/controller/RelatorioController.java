@@ -18,7 +18,7 @@ public class RelatorioController {
 
     @GetMapping("/relatorioInterface")
     public String getRelatorio(Model model){
-        model.addAttribute("movimentacoes", relatorioService.getMovimentacoes());
+        model.addAttribute("movimentacoes", relatorioService.getMovimentacoesDTO());
         model.addAttribute("total", relatorioService.getValoresEmBrl());
         return "fragments/relatorio :: content";
     }

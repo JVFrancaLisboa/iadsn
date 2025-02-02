@@ -8,6 +8,7 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -19,8 +20,8 @@ public class GastoEntity implements MovimentacaoFinanceira {
     @NotBlank(message = "Justifique o gasto")
     private String descricao;
     private BigDecimal valor;
-    @NotBlank(message = "Por favor preencha o campo 'Data'")
-    private String data;
+    //@NotBlank(message = "Por favor preencha o campo 'Data'")
+    private LocalDate data;
     @Transient //Indica que esse atributo não será persistido ao banco
     private MultipartFile file;
     @Lob
@@ -33,12 +34,12 @@ public class GastoEntity implements MovimentacaoFinanceira {
     }
 
     @Override
-    public BigDecimal valor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
     @Override
-    public String getData(){
+    public LocalDate getData(){
         return data;
     }
 }

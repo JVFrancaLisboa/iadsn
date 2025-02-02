@@ -1,15 +1,18 @@
 package com.iadsn.services;
 
 import com.iadsn.domain.MovimentacaoFinanceira;
+import com.iadsn.dto.MovimentacaoFinanceiraDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class RelatorioService {
@@ -21,7 +24,7 @@ public class RelatorioService {
     @Autowired
     GastoService gastoService;
 
-    public List<MovimentacaoFinanceira> getMovimentacoes(){
+    private List<MovimentacaoFinanceira> getMovimentacoes() {
         List<MovimentacaoFinanceira> movimentacoes = new ArrayList<>();
         movimentacoes.addAll(dizimoService.getDizimosList());
         movimentacoes.addAll(ofertaService.getOfertasList());
@@ -31,11 +34,19 @@ public class RelatorioService {
         return movimentacoes;
     }
 
+    public List<MovimentacaoFinanceiraDTO> getMovimentacoesDTO(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return getMovimentacoes().stream()
+                .map(mov -> new MovimentacaoFinanceiraDTO(mov.getNome(), mov.getData().format(formatter), mov.getValor()))
+                .collect(Collectors.toList());
+    }
+
+
     // Método Será depreciado quando o sistema estiver emitindo relatórios mensais.
     // Por hora ele só emite um único relátorio.
-    public BigDecimal getValorTotalRalatorio(){
-        return getMovimentacoes().stream()
-                .map(MovimentacaoFinanceira::valor)
+    private BigDecimal getValorTotalRalatorio(){
+        return getMovimentacoesDTO().stream()
+                .map(MovimentacaoFinanceiraDTO::getValor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

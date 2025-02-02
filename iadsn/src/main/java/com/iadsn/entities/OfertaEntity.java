@@ -7,6 +7,8 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Data
@@ -16,8 +18,8 @@ public class OfertaEntity implements MovimentacaoFinanceira {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Por favor preencha o campo 'Data'")
-    private String data;
+    //@NotBlank(message = "Por favor preencha o campo 'Data'")
+    private LocalDate data;
     @PositiveOrZero(message = "O valor deve ser positivo")
     private BigDecimal valor;
 
@@ -27,7 +29,7 @@ public class OfertaEntity implements MovimentacaoFinanceira {
     }
 
     @Override
-    public BigDecimal valor() {
+    public BigDecimal getValor() {
         return valor;
     }
 }
