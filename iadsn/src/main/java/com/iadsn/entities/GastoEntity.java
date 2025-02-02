@@ -1,5 +1,6 @@
 package com.iadsn.entities;
 
+import com.iadsn.domain.MovimentacaoFinanceira;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "gastos")
-public class GastoEntity {
+public class GastoEntity implements MovimentacaoFinanceira {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,9 +20,26 @@ public class GastoEntity {
     private String descricao;
     @PositiveOrZero(message = "O valor deve ser positivo")
     private BigDecimal valor;
+    @NotBlank(message = "Por favor preencha o campo 'Data'")
+    private String data;
     @Transient //Indica que esse atributo não será persistido ao banco
     private MultipartFile file;
     @Lob
     @Column(name = "nota_fiscal", columnDefinition = "LONGBLOB")
     private byte[] notaFiscal;
+
+    @Override
+    public String getNome() {
+        return descricao;
+    }
+
+    @Override
+    public BigDecimal valor() {
+        return valor;
+    }
+
+    @Override
+    public String getData(){
+        return data;
+    }
 }

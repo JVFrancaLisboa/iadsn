@@ -28,11 +28,6 @@ public class MiscController {
         return "fragments/contrato";
     }
 
-    @GetMapping("/relatorio")
-    public String getRelatorio(){
-        return "fragments/relatorio :: content";
-    }
-
     @GetMapping("/carteirinhas")
     public String getCarteirinhas(){
         return "carteirinhas";

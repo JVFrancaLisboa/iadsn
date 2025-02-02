@@ -15,26 +15,16 @@
         <table class="table table-bordered border border-dark">
             <thead>
             <tr>
-                <th scope="col" style="width: 5%;">Data</th>
+                <th scope="col" style="width: 10%;">Data</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Valor</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>255</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>622</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry the Bird</td>
-                <td>451</td>
+            <tr th:each="m : ${movimentacoes}">
+                <th th:text="${m.data}" scope="row"></th>
+                <td th:text="${m.nome}"></td>
+                <td th:text="${m.valor}"></td>
             </tr>
             </tbody>
         </table>
