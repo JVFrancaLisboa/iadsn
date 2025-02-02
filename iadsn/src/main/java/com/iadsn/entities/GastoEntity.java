@@ -18,7 +18,6 @@ public class GastoEntity implements MovimentacaoFinanceira {
     private Long id;
     @NotBlank(message = "Justifique o gasto")
     private String descricao;
-    @PositiveOrZero(message = "O valor deve ser positivo")
     private BigDecimal valor;
     @NotBlank(message = "Por favor preencha o campo 'Data'")
     private String data;
