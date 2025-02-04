@@ -1,9 +1,7 @@
 package com.iadsn.controller;
 
-import com.iadsn.domain.MovimentacaoFinanceira;
 import com.iadsn.services.RelatorioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.convert.JMoleculesConverters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +18,8 @@ public class RelatorioController {
 
     @GetMapping("/relatorioInterface")
     public String getRelatorio(Model model){
-        model.addAttribute("movimentacoes", relatorioService.getMovimentacoes());
+        model.addAttribute("movimentacoes", relatorioService.getMovimentacoesDTO());
+        model.addAttribute("total", relatorioService.getValoresEmBrl());
         return "fragments/relatorio :: content";
     }
 }

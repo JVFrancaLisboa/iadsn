@@ -24,10 +24,11 @@
             <tr th:each="m : ${movimentacoes}">
                 <th th:text="${m.data}" scope="row"></th>
                 <td th:text="${m.nome}"></td>
-                <td th:text="${m.valor}"></td>
+                <td th:text="'R$ '+${m.valor}"></td>
             </tr>
             </tbody>
         </table>
+        <p class="h6 text-end" th:text="'Caixa: '+${total}"></p>
     </div>
 </div>
 </body>

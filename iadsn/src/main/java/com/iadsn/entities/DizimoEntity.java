@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -21,8 +22,8 @@ public class DizimoEntity implements MovimentacaoFinanceira {
     @ManyToOne
     @JoinColumn(name = "membro_id") // 'membro_id' definido como chave secundária no bd
     private MembroEntity membro; // Membro que está efetuando o dizimo
-    @NotBlank(message = "Por favor preencha o campo 'Data'")
-    private String data;
+    //@NotBlank(message = "Por favor preencha o campo 'Data'")
+    private LocalDate data;
     @PositiveOrZero(message = "O valor deve ser positivo")
     private BigDecimal valor;
 
@@ -32,7 +33,7 @@ public class DizimoEntity implements MovimentacaoFinanceira {
     }
 
     @Override
-    public BigDecimal valor() {
+    public BigDecimal getValor() {
         return valor;
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -42,6 +43,12 @@ public class GastoService {
                 System.out.println("Não foi possível converter a imagem em bytes.");
             }
         }
+
+        // Transformando o valor em negativo
+        if (gasto.getValor() != null) {
+            gasto.setValor(gasto.getValor().multiply(BigDecimal.valueOf(-1)));
+        }
+
         return gastoRepository.save(gasto);
     }
 
