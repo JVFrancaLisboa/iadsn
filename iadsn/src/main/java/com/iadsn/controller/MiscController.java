@@ -32,4 +32,9 @@ public class MiscController {
     public String getCarteirinhas(){
         return "carteirinhas";
     }
+
+    @GetMapping("/data-relatorio")
+    public String getDataRelatorio(){
+        return "fragments/escolha-data";
+    }
 }
