@@ -57,5 +57,5 @@ public class MembroController {
     public String atualizarMembro(@PathVariable Long id, Model model){
         model.addAttribute("membro", membroService.getMembroId(id));
         return "atualizar-membro";
-    }
+    } 
 }
