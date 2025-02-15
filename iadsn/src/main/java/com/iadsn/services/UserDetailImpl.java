@@ -4,9 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
-public class ImplDadosUsuario implements UserDetails {
+public class UserDetailImpl implements UserDetails {
 
     private Long id;
     private String nome;
