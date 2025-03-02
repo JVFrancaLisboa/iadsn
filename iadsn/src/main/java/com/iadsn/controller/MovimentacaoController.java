@@ -39,7 +39,7 @@ public class MovimentacaoController {
     @PostMapping("/save-dizimo")
     public String salvarDizmo(@ModelAttribute DizimoEntity dizimo){
         dizimoService.criarDizimo(dizimo);
-        return "home";
+        return "redirect:/";
     }
 
 
@@ -47,16 +47,16 @@ public class MovimentacaoController {
     @PostMapping("/save-oferta")
     public String salvarOferta(@ModelAttribute OfertaEntity oferta){
         ofertaService.criarOferta(oferta);
-        return "home";
+        return "redirect:/";
     }
 
 
     // Realicionados aos Gastos
     @PostMapping("/save-gasto")
     public String salvaGasto(@ModelAttribute GastoEntity gasto){
-        if(gasto == null) return "home";
+        if(gasto == null) return "redirect:/";
         if(gasto.getId() == null) gastoService.criarGasto(gasto);
         else gastoService.atualizarGasto(gasto.getId(), gasto);
-        return "home";
+        return "redirect:/";
     }
 }
