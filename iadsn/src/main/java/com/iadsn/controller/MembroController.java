@@ -29,28 +29,28 @@ public class MembroController {
 
     @PostMapping("salvar-membro")
     public String salvarMembro(@Valid @ModelAttribute MembroEntity membro) {
-        if (membro == null) return "home";
+        if (membro == null) return "redirect:/";
         if(membro.getId() == null) membroService.criarMembro(membro);
         else membroService.atualizarMembro(membro.getId(), membro, membro.getMultipartFile());
-        return "home";
+        return "redirect:/";
     }
 
     @PostMapping("deletar/{id}")
     public String deletarMembro(@PathVariable Long id){
         membroService.deletarMembro(id);
-        return "home";
+        return "redirect:/";
     }
 
     @PostMapping("arquivar/{id}")
     public String arquivarMembro(@PathVariable(value = "id") Long id){
         membroService.arquivarMembroId(id);
-        return "home";
+        return "redirect:/";
     }
 
     @PostMapping("desarquivar/{id}")
     public String desarquivarMembro(@PathVariable(value = "id") Long id){
         membroService.desarquivarMembroId(id);
-        return "home";
+        return "redirect:/";
     }
 
     @PostMapping("/atualizar-membro/{id}")
