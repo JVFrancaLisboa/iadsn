@@ -24,6 +24,12 @@ public class RelatorioService {
     @Autowired
     GastoService gastoService;
 
+    /**
+     * Metodo privado que agrega todas as movimentações financeiras (dízimos, ofertas e gastos) em uma lista.
+     * Ordena as movimentações por data.
+     *
+     * @return Lista de movimentações financeiras ordenadas pela data.
+     */
     private List<MovimentacaoFinanceira> getMovimentacoes() {
         List<MovimentacaoFinanceira> movimentacoes = new ArrayList<>();
         movimentacoes.addAll(dizimoService.getDizimosList());
@@ -34,6 +40,12 @@ public class RelatorioService {
         return movimentacoes;
     }
 
+    /**
+     * Metodo público que converte a lista de movimentações financeiras para DTOs.
+     * A conversão inclui a formatação da data e retorna apenas os dados necessários para exibição.
+     *
+     * @return Lista de DTOs de movimentações financeiras
+     */
     public List<MovimentacaoFinanceiraDTO> getMovimentacoesDTO(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return getMovimentacoes().stream()
@@ -42,6 +54,11 @@ public class RelatorioService {
     }
 
 
+    /**
+     * Metodo privado que calcula o valor total de todas as movimentações financeiras.
+     *
+     * @return Valor total de todas as movimentações.
+     */
     // Método Será depreciado quando o sistema estiver emitindo relatórios mensais.
     // Por hora ele só emite um único relátorio.
     private BigDecimal getValorTotalRalatorio(){
@@ -50,6 +67,11 @@ public class RelatorioService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    /**
+     * Metodo público que formata o valor total do relatório como moeda BRL (Real Brasileiro).
+     *
+     * @return Valor total formatado como moeda brasileira (R$).
+     */
     // Formatador de valores para BRL
     public String getValoresEmBrl(){
         NumberFormat formatador = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
