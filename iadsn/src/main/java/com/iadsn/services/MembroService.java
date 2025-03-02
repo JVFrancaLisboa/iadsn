@@ -14,10 +14,12 @@ public class MembroService {
     @Autowired
     MembroRepository membroRepository;
 
+    // Metodo retorna um membro pelo id
     public MembroEntity getMembroId(Long id){
         return membroRepository.findById(id).orElse(null);
     }
 
+    // Metodo para atualizar os dados de um membro
     public MembroEntity atualizarMembro(Long id, MembroEntity membroAtualizado, MultipartFile file) {
         MembroEntity membro = getMembroId(id);
 
@@ -50,10 +52,12 @@ public class MembroService {
         return membroRepository.save(membro);
     }
 
+    // Metodo para obter todos os membros
     public List<MembroEntity> getMembrosList(){
         return membroRepository.findAll();
     }
 
+    // Metodo para obter membros arquivados
     public List<MembroEntity> getMembrosArquivados(){
         List<MembroEntity> membrosArquivados = membroRepository.findMembrosArquivados();
         if(!membrosArquivados.isEmpty()){
@@ -62,6 +66,7 @@ public class MembroService {
         return null;
     }
 
+    // Metodo para obter membros desarquivados
     public List<MembroEntity> getMembrosDesarquivados(){
         List<MembroEntity> membrosDesarquivados = membroRepository.findMembrosDesarquivados();
         if(!membrosDesarquivados.isEmpty()){
@@ -70,8 +75,11 @@ public class MembroService {
         return null;
     }
 
+    // Metodo para criar um novo membro
     public MembroEntity criarMembro(MembroEntity membro){
-        membro.setId(null);
+        membro.setId(null);// Garante que um novo ID será gerado pelo banco de dados
+
+        // Verifica se um arquivo (foto) foi enviado junto com a criação do membro
         if(membro.getMultipartFile() != null && !membro.getMultipartFile().isEmpty()){
             try{
                 membro.setFoto(membro.getMultipartFile().getBytes());
@@ -83,11 +91,13 @@ public class MembroService {
         return membroRepository.save(membro);
     }
 
+    // Metodo para deletar um membro
     public void deletarMembro(Long id){
         MembroEntity membro = getMembroId(id);
         membroRepository.deleteById(membro.getId());
     }
 
+    // Metodo para arquivar um membro (tornar 'arquivado' true)
     public MembroEntity arquivarMembroId(Long id){
         MembroEntity membro = getMembroId(id);
         if (membro != null && !membro.isArquivado()){
@@ -98,6 +108,7 @@ public class MembroService {
         return null;
     }
 
+    // Metodo para desarquivar um membro (tornar 'arquivado' false)
     public MembroEntity desarquivarMembroId(Long id){
         MembroEntity membro = getMembroId(id);
         if (membro != null && membro.isArquivado()){
