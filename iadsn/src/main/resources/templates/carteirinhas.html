@@ -22,12 +22,16 @@
         <p class="label mb-1"><em>"Resgatando Vidas Para um Grande Reino"</em></p>
       </header>
       <main class="dados-membro d-flex align-items-center">
-        <div class="border p-3" style="width: 100px; height: 120px; text-align: center;">Foto Aqui</div>
+        <!-- Foto -->
+        <div class="border p-3 foto" style="width: 100px; height: 120px; text-align: center;">
+          <img th:src="${dto.membro.foto != null} ? @{/membros_api/foto/{id}(id=${dto.membro.id})} : 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg'"
+            alt="Foto do membro" style="width: 100px; height: 120px; text-align: center;" onerror="this.src='https://via.placeholder.com/120x120?text=Sem+Foto'" />
+        </div>
         <div class="info-membro ms-3">
           <h2 class="text-center titulo">CREDENCIAL DE MEMBRO</h2>
-          <p><strong><span class="label">Nome:</span></strong> _________________________</p>
-          <p><strong><span class="label">Emissão:</span></strong> _______________________<strong></p>
-          <p><span class="label">Cargo:</span></strong>_________________________</p>
+          <p class="label"><strong><span>Nome: </span></strong><span th:text="${dto.membro.nome}"></span></p>
+          <p><strong><span class="label">Emissão: </span></strong><span th:text="${dto.emissao}"></span><strong></p>
+          <p class="label"><span>Cargo: </span></strong><span th:text="${dto.membro.cargo}"></span></p>
         </div>
       </main>
       <div class="assinatura mt-3">
@@ -38,44 +42,53 @@
     <div class="carteirinha">
       <h1 class="titulo">CREDENCIAL DE MEMBRO</h1>
       <div class="dados-membro">
-        <div class="linha">
+        <div class="row">
           <div class="campo">
-            <span class="label">Nome:</span>
-            <span class="dado"></span>
-          </div>
-          <div class="campo">
-            <span class="label">Nascimento:</span>
-            <span class="dado"></span>
-          </div>
-        </div>
-        <div class="linha">
-          <div class="campo">
-            <span class="label">CPF:</span>
-            <span class="dado"></span>
+            <span class="label">Nascimento: <span th:text="${dto.membro.nascimento}"></span></span>
           </div>
           <div class="campo">
             <span class="label">RG:</span>
-            <span class="dado"></span>
+            <span th:text="${dto.rg}"></span>
           </div>
         </div>
-        <div class="linha">
+        <div class="row">
+          <div class="campo">
+            <span class="label">CPF:</span>
+            <span th:text="${dto.membro.cpf}"></span>
+          </div>
           <div class="campo">
             <span class="label">Sexo:</span>
-            <span class="dado"></span>
-          </div>
-          <div class="campo">
-            <span class="label">Estado Civil:</span>
-            <span class="dado"></span>
+            <span th:text="${dto.membro.sexo}"></span>
           </div>
         </div>
-        <div class="linha">
+        <div class="row">
           <div class="campo">
-            <span class="label">Batismo nas Águas:</span>
-            <span class="dado"></span>
+            <span class="label">Batismo nas Águas:</span><br>
+            <span th:text="${dto.batismoAguas}"></span>
           </div>
           <div class="campo">
-            <span class="label">Batismo no Espírito Santo:</span>
-            <span class="dado"></span>
+            <span class="label">Batismo no Espírito Santo:</span><br>
+            <span th:text="${dto.batismoEspiritoSanto}"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="campo">
+            <span class="label">Estado Civil:</span>
+            <span th:text="${dto.membro.statusCivil}"></span>
+          </div>
+          <div class="campo">
+            <span class="label">Campo:</span>
+            <span th:text="${dto.campo}"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="campo">
+            <span class="label">Nacionalidade:</span>
+            <span th:text="${dto.nacionalidade}"></span>
+          </div>
+          <div class="campo">
+            <span class="label">Naturalidade:</span>
+            <span th:text="${dto.naturalidade}"></span>
           </div>
         </div>
       </div>
@@ -86,10 +99,19 @@
     </div>
   </div>
   <button id="imprimirBtn" class="btn btn-dark">Imprimir</button>
+  <!-- Foto -->
+  <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
+  <div class="col-12 text-center">
+    <img id="selectedImage"
+      th:src="${dto.membro.foto != null} ? @{/membros_api/foto/{id}(id=${dto.membro.id})} : 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg'"
+      alt="Foto do membro" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;"
+      onerror="this.src='https://via.placeholder.com/120x120?text=Sem+Foto'" />
+    <br>
+  </div>
   <script>
-    document.getElementById("imprimirBtn").addEventListener("click", function() {
-  window.print();
-});
+    document.getElementById("imprimirBtn").addEventListener("click", function () {
+      window.print();
+    });
   </script>
 </body>
 

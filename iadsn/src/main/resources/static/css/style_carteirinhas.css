@@ -44,13 +44,6 @@ body {
     font-size: 14px;
   }
 
-  .dado {
-    display: block;
-    border-bottom: 1px solid black;
-    height: 20px;
-    font-size: 14px;
-  }
-
   .assinatura {
     text-align: center;
     margin-top: 20px;
