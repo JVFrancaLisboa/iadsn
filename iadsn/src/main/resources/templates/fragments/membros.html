@@ -3,19 +3,19 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membros</title>
 </head>
 <body>
 <div th:fragment="content">
     <div class="container fundo-2">
         <h1 id="titulo" class="text-center mt-4">Cadastro de Membros</h1>
-        <form class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate th:action="@{membros/salvar-membro}"
+        <form class="row g-3 needs-validation col-12 col-md-10 col-lg-8 mx-auto" novalidate
+              th:action="@{membros/salvar-membro}"
               method="post" enctype="multipart/form-data">
-            <!-- Foto -->
-            <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
             <div class="col-12 text-center">
                 <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                     alt="example placeholder" class="rounded-circle mb-3"
+                     alt="example placeholder" class="rounded-circle mb-3 img-fluid"
                      style="width: 120px; height: 120px; object-fit: cover;"/>
                 <br>
                 <label class="btn btn-outline-primary btn-sm">
@@ -25,40 +25,33 @@
                 </label>
             </div>
 
-            <!-- Dados Pessoais -->
-            <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Nome</label>
+            <div class="col-12 col-md-6"><label for="validationCustom01" class="form-label">Nome</label>
                 <input th:field="${membro.nome}" type="text" class="form-control" id="validationCustom01"
                        placeholder="Insira o nome" required>
             </div>
-            <div class="col-md-6">
-                <label for="validationCustom02" class="form-label">Nascimento</label>
+            <div class="col-12 col-md-6"><label for="validationCustom02" class="form-label">Nascimento</label>
                 <input th:field="${membro.nascimento}" type="date" class="form-control" id="validationCustom02"
                        required>
             </div>
-            <div class="col-md-6">
-                <label for="validationCustomUsername" class="form-label">Email (Opcional)</label>
+            <div class="col-12 col-md-6"><label for="validationCustomUsername" class="form-label">Email
+                (Opcional)</label>
                 <div class="input-group">
                     <span class="input-group-text">@</span>
                     <input th:field="${membro.email}" type="email" class="form-control" id="validationCustomUsername">
                 </div>
             </div>
-            <div class="col-md-6">
-                <label for="validationCustom03" class="form-label">CPF</label>
+            <div class="col-12 col-md-6"><label for="validationCustom03" class="form-label">CPF</label>
                 <input th:field="${membro.cpf}" type="text" class="form-control" id="validationCustom03" required>
                 <small class="text-muted">Exemplo: 123.456.789-12</small>
             </div>
 
-            <!-- Informações Adicionais -->
-            <div class="col-md-6">
-                <label for="validationCustom04" class="form-label">Sexo</label>
+            <div class="col-12 col-md-6"><label for="validationCustom04" class="form-label">Sexo</label>
                 <select th:field="${membro.sexo}" class="form-select" id="validationCustom04" required>
                     <option selected value="MASCULINO">Masculino</option>
                     <option value="FEMININO">Feminino</option>
                 </select>
             </div>
-            <div class="col-md-6">
-                <label for="validationCustom05" class="form-label">Status Civil</label>
+            <div class="col-12 col-md-6"><label for="validationCustom05" class="form-label">Status Civil</label>
                 <select th:field="${membro.statusCivil}" class="form-select" id="validationCustom05" required>
                     <option selected value="CASADO">Casado(a)</option>
                     <option value="SOLTEIRO">Solteiro(a)</option>
@@ -109,18 +102,14 @@
                 </select>
             </div>
 
-            <!-- Contato -->
-            <div class="col-md-8">
-                <label for="validationCustom06" class="form-label">Endereço</label>
+            <div class="col-12"><label for="validationCustom06" class="form-label">Endereço</label>
                 <input th:field="${membro.endereco}" type="text" class="form-control" id="validationCustom06" required>
             </div>
-            <div class="col-md-4">
-                <label for="validationCustom07" class="form-label">Telefone</label>
+            <div class="col-12 col-md-6"><label for="validationCustom07" class="form-label">Telefone</label>
                 <input th:field="${membro.telefone}" type="text" class="form-control" id="validationCustom07" required>
                 <small class="text-muted">Exemplo: (61)912457823</small>
             </div>
 
-            <!-- Botão -->
             <div class="col-12 text-center">
                 <button class="btn btn-success" type="submit">Cadastrar Membro</button>
             </div>
@@ -128,89 +117,98 @@
         <hr>
         <div class="container">
             <h1 class="text-center mt-4">Membros Cadastrados</h1>
-            <table id="tabela" class="table">
-                <thead>
-                <tr>
-                    <th scope="col">NOME</th>
-                    <th scope="col">CARGO</th>
-                    <th scope="col">OPERAÇÕES</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="m : ${membrosLista}">
-                    <td th:text="${m.nome}"></td>
-                    <td th:text="${m.cargo}"></td>
-                    <td>
-                        <div class="container">
-                            <div class="row">
-                                <!-- Formulário de atualização -->
-                                <form class="col-sm-3" th:action="@{/membros/atualizar-membro/{id}(id=${m.id})}" method="post">
-                                    <button button type="submit" class="btn btn-outline-primary">Atualizar</button>
-                                </form>
-                                <!-- Formulário de arquivamento -->
-                                <form class="col-sm-3" th:action="@{/membros/arquivar/{id}(id=${m.id})}" method="post">
-                                    <button type="submit" class="btn btn-outline-warning">Arquivar</button>
-                                </form>
-                                <!-- Formulário de exclusão -->
-                                <form class="col-sm-3" th:action="@{/membros/deletar/{id}(id=${m.id})}" method="post"
-                                      style="display:inline;">
-                                    <button type="submit" class="btn btn-outline-danger">Excluir</button>
-                                </form>
+            <div class="table-responsive">
+                <table id="tabela" class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">NOME</th>
+                        <th scope="col">CARGO</th>
+                        <th scope="col">OPERAÇÕES</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="m : ${membrosLista}">
+                        <td th:text="${m.nome}"></td>
+                        <td th:text="${m.cargo}"></td>
+                        <td>
+                            <div class="container">
+                                <div class="row">
+                                    <form class="col-12 col-sm-4"
+                                          th:action="@{/membros/atualizar-membro/{id}(id=${m.id})}" method="post">
+                                        <button button type="submit" class="btn btn-outline-primary btn-sm w-100">
+                                            Atualizar
+                                        </button>
+                                    </form>
+                                    <form class="col-12 col-sm-4" th:action="@{/membros/arquivar/{id}(id=${m.id})}"
+                                          method="post">
+                                        <button type="submit" class="btn btn-outline-warning btn-sm w-100">Arquivar
+                                        </button>
+                                    </form>
+                                    <form class="col-12 col-sm-4" th:action="@{/membros/deletar/{id}(id=${m.id})}"
+                                          method="post"
+                                          style="display:inline;">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">Excluir
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <!-- Aba para desarquivar membros arquivados-->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                Ver membros arquivados
-            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                    Ver membros arquivados
+                </button>
+            </div>
 
-            <!-- Modal de Arquivados -->
+
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Membros arquivados</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">NOME</th>
-                                    <th scope="col">OPERAÇÕES</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="m : ${membrosArquivados}">
-                                    <td th:text="${m.nome}"></td>
-                                    <td>
-                                        <div class="container">
-                                            <div class="row">
-                                                <!-- Formulário de arquivamento -->
-                                                <form class="col-sm-6"
-                                                      th:action="@{/membros/desarquivar/{id}(id=${m.id})}"
-                                                      method="post">
-                                                    <button type="submit" class="btn btn-outline-warning">Desarquivar
-                                                    </button>
-                                                </form>
-                                                <!-- Formulário de exclusão -->
-                                                <form class="col-sm-6" th:action="@{/membros/deletar/{id}(id=${m.id})}"
-                                                      method="post" style="display:inline;">
-                                                    <button type="submit" class="btn btn-outline-danger">Excluir
-                                                    </button>
-                                                </form>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">NOME</th>
+                                        <th scope="col">OPERAÇÕES</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="m : ${membrosArquivados}">
+                                        <td th:text="${m.nome}"></td>
+                                        <td>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <form class="col-12 col-sm-6"
+                                                          th:action="@{/membros/desarquivar/{id}(id=${m.id})}"
+                                                          method="post">
+                                                        <button type="submit"
+                                                                class="btn btn-outline-warning btn-sm w-100">Desarquivar
+                                                        </button>
+                                                    </form>
+                                                    <form class="col-12 col-sm-6"
+                                                          th:action="@{/membros/deletar/{id}(id=${m.id})}"
+                                                          method="post" style="display:inline;">
+                                                        <button type="submit"
+                                                                class="btn btn-outline-danger btn-sm w-100">Excluir
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

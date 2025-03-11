@@ -26,6 +26,10 @@ public class DizimoService {
     // metodo para atualizar um dízimo existente
     public DizimoEntity atualizarDizimo(Long id, DizimoEntity dizimoAtualizado){
         // Procura dizimo pelo 'id'
+        if(id == null){
+            throw new IllegalArgumentException("O ID não pode ser nulo");
+        }
+
         DizimoEntity dizimo = getDizimoId(id);
 
         // Atualiza dizimo encontrado com as infomaçoes da entidade do parâmetro
