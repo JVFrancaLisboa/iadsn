@@ -1,117 +1,202 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movimentações</title>
-</head>
+  </head>
 
-<body>
-<div th:fragment="content">
-    <div class="container fundo-2">
+  <body>
+    <div th:fragment="content">
+      <div class="container fundo-2">
         <!-- Aba de Dizimos -->
         <div class="dizimos">
-            <h1 class="text-center mt-4">Entrada de dízimos</h1>
-            <form th:action="@{movimentacoes/save-dizimo}" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
-                <!-- Pessoa dizimista -->
-                <div class="col-md-6">
-                    <label for="validationCustom04" class="form-label">Pessoa Dizimista: </label>
-                    <select class="form-select" id="validationCustom04" th:field="${dizimo.membro}" required>
-                        <option value="" disabled selected>Selecione um membro</option>
-                        <option th:each="m : ${membros}" th:value="${m.id}" th:text="${m.nome}"></option>
-                    </select>
-                </div>
-                <!-- Data de entrada -->
-                <div class="col-md-6">
-                    <label for="validationCustom02" class="form-label">Data de entrada: </label>
-                    <input th:field="${dizimo.data}" type="date" class="form-control" id="validationCustom02" required>
-                </div>
-                <!-- Valor -->
-                <div class="col-md-6">
-                    <label for="moneyInput" class="form-label">Valor (R$)</label>
-                    <div class="input-group">
-                        <span class="input-group-text">R$</span>
-                        <input th:field="${dizimo.valor}" type="number" id="moneyInput1" class="form-control" placeholder="0.00" step="0.01"
-                               min="0">
-                    </div>
-                </div>
-                <div class="col-md-06">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </form>
+          <h1 class="text-center mt-4">Entrada de dízimos</h1>
+          <form
+            th:action="@{movimentacoes/save-dizimo}"
+            method="post"
+            class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto"
+            novalidate
+          >
+            <!-- Pessoa dizimista -->
+            <div class="col-md-6">
+              <label for="validationCustom04" class="form-label"
+                >Pessoa Dizimista:
+              </label>
+              <select
+                class="form-select"
+                id="validationCustom04"
+                th:field="${dizimo.membro}"
+                required
+              >
+                <option value="" disabled selected>Selecione um membro</option>
+                <option
+                  th:each="m : ${membros}"
+                  th:value="${m.id}"
+                  th:text="${m.nome}"
+                ></option>
+              </select>
+            </div>
+            <!-- Data de entrada -->
+            <div class="col-md-6">
+              <label for="validationCustom02" class="form-label"
+                >Data de entrada:
+              </label>
+              <input
+                th:field="${dizimo.data}"
+                type="date"
+                class="form-control"
+                id="validationCustom02"
+                required
+              />
+            </div>
+            <!-- Valor -->
+            <div class="col-md-6">
+              <label for="moneyInput" class="form-label">Valor (R$)</label>
+              <div class="input-group">
+                <span class="input-group-text">R$</span>
+                <input
+                  th:field="${dizimo.valor}"
+                  type="number"
+                  id="moneyInput1"
+                  class="form-control"
+                  placeholder="0.00"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div class="col-md-06">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+          </form>
         </div>
-        <hr>
-        <hr>
+        <hr />
+        <hr />
         <div class="oferta">
-            <!-- Aba de Ofertas -->
-            <h1 class="text-center mt-4">Entrada de ofertas</h1>
-            <form th:action="@{movimentacoes/save-oferta}" method="post"
-                  class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate>
-                <!-- Data de entrada -->
-                <div class="col-md-6">
-                    <label for="validationCustom02" class="form-label">Data de entrada: </label>
-                    <input th:field="${oferta.data}" type="date" class="form-control" id="validationCustom2" required>
-                </div>
-                <!-- Valor -->
-                <div class="col-md-6">
-                    <label for="moneyInput" class="form-label">Valor (R$)</label>
-                    <div class="input-group">
-                        <span class="input-group-text">R$</span>
-                        <input th:field="${oferta.valor}" type="number" id="moneyInput2" class="form-control"
-                               placeholder="0.00" step="0.01" min="0">
-                    </div>
-                </div>
-                <div class="col-md-06">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+          <!-- Aba de Ofertas -->
+          <h1 class="text-center mt-4">Entrada de ofertas</h1>
+          <form
+            th:action="@{movimentacoes/save-oferta}"
+            method="post"
+            class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto"
+            novalidate
+          >
+            <!-- Data de entrada -->
+            <div class="col-md-6">
+              <label for="validationCustom02" class="form-label"
+                >Data de entrada:
+              </label>
+              <input
+                th:field="${oferta.data}"
+                type="date"
+                class="form-control"
+                id="validationCustom2"
+                required
+              />
+            </div>
+            <!-- Valor -->
+            <div class="col-md-6">
+              <label for="moneyInput" class="form-label">Valor (R$)</label>
+              <div class="input-group">
+                <span class="input-group-text">R$</span>
+                <input
+                  th:field="${oferta.valor}"
+                  type="number"
+                  id="moneyInput2"
+                  class="form-control"
+                  placeholder="0.00"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div class="col-md-06">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
         </div>
-        <hr>
-        <hr>
+        <hr />
+        <hr />
         <div class="gastos">
-            <!-- Aba de Gastos -->
-            <h1 class="text-center mt-4">Gastos/Saídas</h1>
-            <form th:action="@{movimentacoes/save-gasto}" method="post" class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto" novalidate enctype="multipart/form-data">
-                <!-- Foto da nota fiscal -->
-                <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
-                <h3 class="text-center mt-4">Nota Fiscal:</h3>
-                <div class="col-12 text-center">
-                    <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                         alt="example placeholder" class="rounded-circle mb-3"
-                         style="width: 120px; height: 120px; object-fit: cover;"/>
-                    <br>
-                    <label class="btn btn-outline-primary btn-sm">
-                        Nota Fiscal
-                        <input th:field="${gasto.file}" type="file" class="d-none" onchange="displaySelectedImage(event, 'selectedImage')"/>
-                    </label>
-                </div>
-                <!-- Documentação de gasto -->
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Documentação de Gasto: </label>
-                    <textarea th:field="${gasto.descricao}" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <!-- Data de entrada -->
-                <div class="col-md-6">
-                    <label for="validationCustom02" class="form-label">Data de entrada: </label>
-                    <input th:field="${gasto.data}" type="date" class="form-control" id="validationCustom" required>
-                </div>
-                <!-- Valor -->
-                <div class="col-md-12">
-                    <label for="moneyInput" class="form-label">Valor (R$)</label>
-                    <div class="input-group">
-                        <span class="input-group-text">R$</span>
-                        <input th:field="${gasto.valor}" type="number" id="moneyInput" class="form-control" placeholder="0.00" step="0.01"
-                               min="0">
-                    </div>
-                </div>
-                <div class="col-md-06">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </form>
+          <!-- Aba de Gastos -->
+          <h1 class="text-center mt-4">Gastos/Saídas</h1>
+          <form
+            th:action="@{movimentacoes/save-gasto}"
+            method="post"
+            class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto"
+            novalidate
+            enctype="multipart/form-data"
+          >
+            <!-- Foto da nota fiscal -->
+            <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
+            <h3 class="text-center mt-4">Nota Fiscal:</h3>
+            <div class="col-12 text-center">
+              <img
+                id="selectedImage"
+                src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                alt="example placeholder"
+                class="rounded-circle mb-3"
+                style="width: 120px; height: 120px; object-fit: cover"
+              />
+              <br />
+              <label class="btn btn-outline-primary btn-sm">
+                Nota Fiscal
+                <input
+                  th:field="${gasto.file}"
+                  type="file"
+                  class="d-none"
+                  onchange="displaySelectedImage(event, 'selectedImage')"
+                />
+              </label>
+            </div>
+            <!-- Documentação de gasto -->
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label"
+                >Documentação de Gasto:
+              </label>
+              <textarea
+                th:field="${gasto.descricao}"
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+              ></textarea>
+            </div>
+            <!-- Data de entrada -->
+            <div class="col-md-6">
+              <label for="validationCustom02" class="form-label"
+                >Data de entrada:
+              </label>
+              <input
+                th:field="${gasto.data}"
+                type="date"
+                class="form-control"
+                id="validationCustom"
+                required
+              />
+            </div>
+            <!-- Valor -->
+            <div class="col-md-12">
+              <label for="moneyInput" class="form-label">Valor (R$)</label>
+              <div class="input-group">
+                <span class="input-group-text">R$</span>
+                <input
+                  th:field="${gasto.valor}"
+                  type="number"
+                  id="moneyInput"
+                  class="form-control"
+                  placeholder="0.00"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div class="col-md-06">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
-</body>
-
+  </body>
 </html>

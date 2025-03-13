@@ -23,7 +23,7 @@
       </header>
       <main class="dados-membro d-flex align-items-center">
         <!-- Foto -->
-        <div class="border p-3 foto" style="width: 100px; height: 120px; text-align: center;">
+        <div class="">
           <img th:src="${dto.membro.foto != null} ? @{/membros_api/foto/{id}(id=${dto.membro.id})} : 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg'"
             alt="Foto do membro" style="width: 100px; height: 120px; text-align: center;" onerror="this.src='https://via.placeholder.com/120x120?text=Sem+Foto'" />
         </div>
@@ -99,14 +99,6 @@
     </div>
   </div>
   <button id="imprimirBtn" class="btn btn-dark">Imprimir</button>
-  <!-- Foto -->
-  <!--https://mdbootstrap.com/docs/standard/extended/file-input-image/-->
-  <div class="col-12 text-center">
-    <img id="selectedImage"
-      th:src="${dto.membro.foto != null} ? @{/membros_api/foto/{id}(id=${dto.membro.id})} : 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg'"
-      alt="Foto do membro" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;"
-      onerror="this.src='https://via.placeholder.com/120x120?text=Sem+Foto'" />
-    <br>
   </div>
   <script>
     document.getElementById("imprimirBtn").addEventListener("click", function () {
