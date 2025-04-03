@@ -7,17 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MiscController {
 
     @GetMapping("/")
-    public String getHome(){
+    public String getHome() {
         return "home";
     }
 
     @GetMapping("/about")
-    public String getAbout(){
+    public String getAbout() {
         return "about";
     }
 
     @GetMapping("/contrato")
-    public String getContrato(){
+    public String getContrato() {
         return "fragments/contrato";
+    }
+
+    @GetMapping("/login")
+    public String getLogin() {
+        return "login";
     }
 }
