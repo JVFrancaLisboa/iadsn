@@ -1,6 +1,7 @@
 package com.iadsn.controller;
 
 import com.iadsn.dto.CarteirinhaMembroDTO;
+import com.iadsn.dto.enums.TipoCarteirinha;
 import com.iadsn.services.MembroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,20 @@ public class CarteirinhaController {
         dto.setBatismoAguas(dto.formatarData(dto.getBatismoAguas()));
         dto.setBatismoEspiritoSanto(dto.formatarData(dto.getBatismoEspiritoSanto()));
         model.addAttribute("dto", dto);
-        return "carteirinhas";
+
+        if(dto.getTipo() == TipoCarteirinha.MEMBRO){
+            return "membro_carteirinha";
+        }
+
+        if(dto.getTipo() == TipoCarteirinha.MINISTRO){
+            return "ministro_carteirinha";
+        }
+
+        if(dto.getTipo() == TipoCarteirinha.MISSIONARIO){
+            return "missionario_carteirinha";
+        }
+
+        return null;
     }
 
     @GetMapping("/membrodto")

@@ -1,6 +1,7 @@
 package com.iadsn.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.iadsn.dto.enums.TipoCarteirinha;
 import com.iadsn.entities.MembroEntity;
 import lombok.Data;
 
@@ -19,6 +20,7 @@ public class CarteirinhaMembroDTO {
     private String nacionalidade;
     private String naturalidade;
     private String campo;
+    private TipoCarteirinha tipo;
 
     public CarteirinhaMembroDTO(){
         gerarEmissao();

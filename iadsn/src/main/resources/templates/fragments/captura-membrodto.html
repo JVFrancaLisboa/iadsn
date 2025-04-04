@@ -44,7 +44,7 @@
                 th:field="${dto.BatismoAguas}"
                 type="date"
                 class="form-control"
-                id="validationCustom02"
+                id="validationCustom07"
                 required
               />
             </div>
@@ -87,7 +87,6 @@
                 th:field="${dto.nacionalidade}"
                 type="text"
                 class="form-control"
-                id="validationCustom01"
                 placeholder="Insira a Nacionalidade"
                 required
               />
@@ -100,7 +99,6 @@
                 th:field="${dto.naturalidade}"
                 type="text"
                 class="form-control"
-                id="validationCustom01"
                 placeholder="Insira a Naturalidade"
                 required
               />
@@ -116,6 +114,21 @@
               placeholder="Insira o Campo"
               required
             />
+          </div>
+          <div class="col-md-3">
+            <label for="validationCustom04" class="form-label"
+            >Tipo Carteirinha:
+            </label>
+            <select
+                    class="form-select"
+                    th:field="${dto.tipo}"
+                    required
+            >
+              <option value="" disabled selected>Selecione um membro</option>
+              <option value="MEMBRO">MEMBRO</option>
+              <option value="MINISTRO">MINISTRO</option>
+              <option value="MISSIONARIO">MISSIONARIO</option>
+            </select>
           </div>
           <div class="col-md-06">
             <button type="submit" class="btn btn-primary">Salvar</button>
