@@ -13,6 +13,7 @@
         <div class="dizimos">
           <h1 class="text-center mt-4">Entrada de dízimos</h1>
           <form
+            id="form-dizimo"
             th:action="@{movimentacoes/save-dizimo}"
             method="post"
             class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto"
@@ -20,51 +21,55 @@
           >
             <!-- Pessoa dizimista -->
             <div class="col-md-6">
-              <label for="validationCustom04" class="form-label"
+              <label for="pessoa-dizimista" class="form-label"
                 >Pessoa Dizimista:
               </label>
               <select
                 class="form-select"
-                id="validationCustom04"
+                id="pessoa-dizimista"
                 th:field="${dizimo.membro}"
                 required
               >
-                <option value="" disabled selected>Selecione um membro</option>
+                <option value="selecionar" selected>Selecione um membro</option>
+                <option value="">Anônimo</option>
                 <option
                   th:each="m : ${membros}"
                   th:value="${m.id}"
                   th:text="${m.nome}"
                 ></option>
               </select>
+              <label class="error-pessoa-dizimista fst-italic text-danger"></label>
             </div>
             <!-- Data de entrada -->
             <div class="col-md-6">
-              <label for="validationCustom02" class="form-label"
+              <label for="data-dizimo" class="form-label"
                 >Data de entrada:
               </label>
               <input
                 th:field="${dizimo.data}"
                 type="date"
                 class="form-control"
-                id="validationCustom02"
+                id="data-dizimo"
                 required
               />
+              <label class="error-data-dizimo fst-italic text-danger"></label>
             </div>
             <!-- Valor -->
             <div class="col-md-6">
-              <label for="moneyInput" class="form-label">Valor (R$)</label>
+              <label for="valor-dizimo" class="form-label">Valor (R$)</label>
               <div class="input-group">
                 <span class="input-group-text">R$</span>
                 <input
                   th:field="${dizimo.valor}"
                   type="number"
-                  id="moneyInput1"
+                  id="valor-dizimo"
                   class="form-control"
                   placeholder="0.00"
                   step="0.01"
                   min="0"
                 />
               </div>
+              <label class="error-valor-dizimo fst-italic text-danger"></label>
             </div>
             <div class="col-md-06">
               <button type="submit" class="btn btn-primary">Salvar</button>
@@ -77,6 +82,7 @@
           <!-- Aba de Ofertas -->
           <h1 class="text-center mt-4">Entrada de ofertas</h1>
           <form
+            id="form-oferta"
             th:action="@{movimentacoes/save-oferta}"
             method="post"
             class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto"
@@ -84,35 +90,37 @@
           >
             <!-- Data de entrada -->
             <div class="col-md-6">
-              <label for="validationCustom02" class="form-label"
+              <label for="data-oferta" class="form-label"
                 >Data de entrada:
               </label>
               <input
                 th:field="${oferta.data}"
                 type="date"
                 class="form-control"
-                id="validationCustom2"
+                id="data-oferta"
                 required
               />
+              <label class="error-data-oferta fst-italic text-danger"></label>
             </div>
             <!-- Valor -->
             <div class="col-md-6">
-              <label for="moneyInput" class="form-label">Valor (R$)</label>
+              <label for="valor-oferta" class="form-label">Valor (R$)</label>
               <div class="input-group">
                 <span class="input-group-text">R$</span>
                 <input
                   th:field="${oferta.valor}"
                   type="number"
-                  id="moneyInput2"
+                  id="valor-oferta"
                   class="form-control"
                   placeholder="0.00"
                   step="0.01"
                   min="0"
                 />
               </div>
+              <label class="error-valor-oferta fst-italic text-danger"></label>
             </div>
             <div class="col-md-06">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
           </form>
         </div>
@@ -122,6 +130,7 @@
           <!-- Aba de Gastos -->
           <h1 class="text-center mt-4">Gastos/Saídas</h1>
           <form
+            id="form-gasto"
             th:action="@{movimentacoes/save-gasto}"
             method="post"
             class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto"
@@ -152,44 +161,47 @@
             </div>
             <!-- Documentação de gasto -->
             <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label"
+              <label for="doc-gasto" class="form-label"
                 >Documentação de Gasto:
               </label>
               <textarea
                 th:field="${gasto.descricao}"
                 class="form-control"
-                id="exampleFormControlTextarea1"
+                id="doc-gasto"
                 rows="3"
               ></textarea>
+              <label class="error-doc-gasto fst-italic text-danger"></label>
             </div>
             <!-- Data de entrada -->
             <div class="col-md-6">
-              <label for="validationCustom02" class="form-label"
+              <label for="data-gasto" class="form-label"
                 >Data de entrada:
               </label>
               <input
                 th:field="${gasto.data}"
                 type="date"
                 class="form-control"
-                id="validationCustom"
+                id="data-gasto"
                 required
               />
+              <label class="error-data-gasto fst-italic text-danger"></label>
             </div>
             <!-- Valor -->
             <div class="col-md-12">
-              <label for="moneyInput" class="form-label">Valor (R$)</label>
+              <label for="valor-gasto" class="form-label">Valor (R$)</label>
               <div class="input-group">
                 <span class="input-group-text">R$</span>
                 <input
                   th:field="${gasto.valor}"
                   type="number"
-                  id="moneyInput"
+                  id="valor-gasto"
                   class="form-control"
                   placeholder="0.00"
                   step="0.01"
                   min="0"
                 />
               </div>
+              <label class="error-valor-gasto fst-italic text-danger"></label>
             </div>
             <div class="col-md-06">
               <button type="submit" class="btn btn-primary">Salvar</button>
@@ -197,6 +209,7 @@
           </form>
         </div>
       </div>
+      <script th:src="@{js/ajaxValidations.js}"></script>
     </div>
   </body>
 </html>
