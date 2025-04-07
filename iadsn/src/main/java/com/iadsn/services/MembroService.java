@@ -1,6 +1,7 @@
 package com.iadsn.services;
 
 import com.iadsn.entities.MembroEntity;
+import com.iadsn.exceptions.MembroComVinculoException;
 import com.iadsn.repository.MembroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -94,6 +95,12 @@ public class MembroService {
     // Metodo para deletar um membro
     public void deletarMembro(Long id){
         MembroEntity membro = getMembroId(id);
+
+        // Lança exceção caso o membro tenha dizímos vinculados
+        if(!membro.getDizimos().isEmpty()){
+            throw new MembroComVinculoException
+                    ("Não é possível excluir o membro "+membro.getNome()+", pois ele possui dízimos vinculados. (Dica: Arquive-o)");
+        }
         membroRepository.deleteById(membro.getId());
     }
 
