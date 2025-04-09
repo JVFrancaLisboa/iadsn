@@ -19,8 +19,9 @@
       background-position: center;
       width: 86mm;
       height: 54mm;
-      margin: 0;
-      padding: 0;
+      margin: 0 !important;
+      display: inline-block;
+      padding: 4px;
       border-radius: 4px;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
       border: 1px solid #000;
@@ -100,9 +101,9 @@
   
 </head>
 <body>
-  <div class="container row" style="gap: 0;">
+  <div class="container row d-flex justify-content-center align-items-center" style="gap: 0; margin: 0; padding: 0;">
     <!-- Frente da credencial -->
-    <div class="carteirinha">
+    <div class="carteirinha" style="margin: 0;">
       <header class="text-center">
         <h1 class="text-danger titulo mb-1">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS</h1>
         <h2 class="text-primary titulo mb-1">MINISTÉRIO SOL NASCENTE</h2>
@@ -130,7 +131,7 @@
     </div>
 
     <!-- Verso da credencial -->
-    <div class="carteirinha">
+    <div class="carteirinha" style="margin: 0;">
       <h1 class="titulo text-center">CREDENCIAL DE MEMBRO</h1>
       <div class="dados-membro">
         <div class="linha">
@@ -183,6 +184,7 @@
       </div>
     </div>
   </div>
+  <br/>
   <button id="imprimirBtn" class="btn btn-dark">Imprimir</button>
 
   <script>
