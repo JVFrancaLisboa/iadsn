@@ -147,7 +147,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Configurações
+                Carteirinhas
               </a>
               <ul
                 class="dropdown-menu"
@@ -155,15 +155,27 @@
               >
                 <li>
                   <a
-                    class="dropdown-item"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
+                    class="dropdown-item navegacao"
                     href="#"
-                    >Contrato Aluguel</a
+                    th:data-url="@{/carteirinha/membrodto}"
+                    >Membro</a
+                  >
+                <li>
+                  <a
+                    class="dropdown-item navegacao"
+                    href="#"
+                    th:data-url="@{/carteirinha/membrodto}"
+                    >Ministro</a
                   >
                 </li>
-                <li><a class="dropdown-item" href="#">...</a></li>
-                <li><a class="dropdown-item" href="#">...</a></li>
+                <li>
+                  <a
+                    class="dropdown-item navegacao"
+                    href="#"
+                    th:data-url="@{/carteirinha/membrodto}"
+                    >Missionário</a
+                  >
+                </li>
               </ul>
             </li>
           </ul>

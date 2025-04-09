@@ -22,10 +22,6 @@ public class CarteirinhaMembroDTO {
     private String campo;
     private TipoCarteirinha tipo;
 
-    public CarteirinhaMembroDTO(){
-        gerarEmissao();
-    }
-
     private void gerarEmissao(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
         LocalDate dataAtual = LocalDate.now();
