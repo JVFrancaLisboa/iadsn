@@ -173,7 +173,7 @@ $(document).ready(function () {
     $(".error-naturalidade-membro").html("").hide();
     $(".error-campo-membro").html("").hide();
 
-    const SelecaoPessoa = $("#pessoa-membro").val();
+    const selecaoPessoa = $("#pessoa-membro").val();
     const batismoAguas = $("#batismo-aguas").val();
     const rgMembro = $("#rg-membro").val();
     const batismoEspirito = $("#batismo-espirito").val();
@@ -181,7 +181,7 @@ $(document).ready(function () {
     const naturalidade = $("#naturalidade-membro").val();
     const campo = $("#campo-membro").val();
 
-    if (SelecaoPessoa === "selecionar") {
+    if (selecaoPessoa === "selecionar") {
       $(".error-pessoa-membro").html("*Campo obrigatório").show(); // Exibe a mensagem de erro
       return; // Impede o envio do formulário
     }
@@ -216,6 +216,7 @@ $(document).ready(function () {
       return; // Impede o envio do formulário
     }
 
+    $(this).unbind("submit").submit(); // Se passar pelas validações, permitir o envio do formulário
   });
 
 });
