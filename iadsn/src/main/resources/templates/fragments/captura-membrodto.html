@@ -14,7 +14,7 @@
           class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto"
           novalidate
         >
-          <h1>Insira os dados da carteirinha:</h1>
+          <h1>Insira os dados da carteirinha de MEMBRO:</h1>
           <div class="row">
             <!-- Escolha da pessoa que irá emitir a carteirinha -->
             <div class="col-md-3">
@@ -115,21 +115,7 @@
               required
             />
           </div>
-          <div class="col-md-3">
-            <label for="validationCustom04" class="form-label"
-            >Tipo Carteirinha:
-            </label>
-            <select
-                    class="form-select"
-                    th:field="${dto.tipo}"
-                    required
-            >
-              <option value="" disabled selected>Selecione um membro</option>
-              <option value="MEMBRO">MEMBRO</option>
-              <option value="MINISTRO">MINISTRO</option>
-              <option value="MISSIONARIO">MISSIONARIO</option>
-            </select>
-          </div>
+          <input type="hidden" name="tipo" value="MEMBRO" />
           <div class="col-md-06">
             <button type="submit" class="btn btn-primary">Salvar</button>
           </div>
