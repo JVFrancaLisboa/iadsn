@@ -19,9 +19,7 @@
           <div class="row">
             <!-- Escolha da pessoa que irá emitir a carteirinha -->
             <div class="col-md-6">
-              <label for="pessoa-membro" class="form-label"
-                >Pessoa:
-              </label>
+              <label for="pessoa-membro" class="form-label">Pessoa: </label>
               <select
                 class="form-select"
                 id="pessoa-membro"
@@ -66,7 +64,7 @@
                 required
               />
               <small class="text-muted">Exemplo: 3333333</small>
-              <br/>
+              <br />
               <label class="error-rg-membro fst-italic text-danger"></label>
             </div>
 
@@ -82,7 +80,9 @@
                 id="batismo-espirito"
                 required
               />
-              <label class="error-espirito-membro fst-italic text-danger"></label>
+              <label
+                class="error-espirito-membro fst-italic text-danger"
+              ></label>
             </div>
           </div>
 
@@ -100,7 +100,9 @@
                 placeholder="Insira a Nacionalidade"
                 required
               />
-              <label class="error-nacionalidade-membro fst-italic text-danger"></label>
+              <label
+                class="error-nacionalidade-membro fst-italic text-danger"
+              ></label>
             </div>
 
             <!-- Naturalidade -->
@@ -116,24 +118,41 @@
                 placeholder="Insira a Naturalidade"
                 required
               />
-              <label class="error-naturalidade-membro fst-italic text-danger"></label>
+              <label
+                class="error-naturalidade-membro fst-italic text-danger"
+              ></label>
             </div>
           </div>
 
-          <!-- Campo -->
-          <div class="col-12 col-md-6">
-            <label for="campo-membro" class="form-label">Campo: </label>
+          <!-- Ordenação -->
+          <div class="col-md-6">
+            <label for="ordenacao-membro" class="form-label"
+              >Ordenação:
+            </label>
             <input
-              th:field="${dto.campo}"
+              th:field="${dto.ordenacao}"
+              type="date"
+              class="form-control"
+              id="ordenacao-membro"
+              required
+            />
+            <label class="error-ordenacao-membro fst-italic text-danger"></label>
+          </div>
+
+          <!-- Sede -->
+          <div class="col-12 col-md-6">
+            <label for="sede-membro" class="form-label">Sede: </label>
+            <input
+              th:field="${dto.sede}"
               type="text"
               class="form-control"
-              id="campo-membro"
+              id="sede-membro"
               placeholder="Insira o Campo"
               required
             />
-            <label class="error-campo-membro fst-italic text-danger"></label>
+            <label class="error-sede-membro fst-italic text-danger"></label>
           </div>
-          
+
           <input type="hidden" name="tipo" value="MEMBRO" />
           <div class="col-md-06">
             <button type="submit" class="btn btn-primary">Salvar</button>

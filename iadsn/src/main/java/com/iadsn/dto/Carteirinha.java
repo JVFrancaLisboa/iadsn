@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Data
-public class Carteirinha {
+public abstract class Carteirinha {
     private MembroEntity membro;
     private int rg;
     private String emissao;
@@ -42,5 +42,4 @@ public class Carteirinha {
 
         return formatado;
     }
-
 }
