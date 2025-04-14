@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
   $("#form-dizimo").submit(function (event) {
     event.preventDefault();
     // Limpar mensagens de erro anteriores
@@ -159,4 +160,63 @@ $(document).ready(function () {
     // Se passar pelas validações, permitir o envio do formulário
     $(this).unbind("submit").submit();
   });
+
+  $("#form-membrodto").submit(function (event) {
+    event.preventDefault();
+
+    // Limpar mensagens de erro anteriores  
+    $(".error-pessoa-membro").html("").hide();
+    $(".error-aguas-membro").html("").hide();
+    $(".error-rg-membro").html("").hide();
+    $(".error-espirito-membro").html("").hide();
+    $(".error-nacionalidade-membro").html("").hide();
+    $(".error-naturalidade-membro").html("").hide();
+    $(".error-campo-membro").html("").hide();
+
+    const selecaoPessoa = $("#pessoa-membro").val();
+    const batismoAguas = $("#batismo-aguas").val();
+    const rgMembro = $("#rg-membro").val();
+    const batismoEspirito = $("#batismo-espirito").val();
+    const nacionalidade = $("#nacionalidade-membro").val();
+    const naturalidade = $("#naturalidade-membro").val();
+    const campo = $("#campo-membro").val();
+
+    if (selecaoPessoa === "selecionar") {
+      $(".error-pessoa-membro").html("*Campo obrigatório").show(); // Exibe a mensagem de erro
+      return; // Impede o envio do formulário
+    }
+
+    if (!batismoAguas) {
+      $(".error-aguas-membro").html("*Campo obrigatório").show(); // Exibe a mensagem de erro
+      return; // Impede o envio do formulário
+    }
+
+    if (rgMembro == 0 || rgMembro == "" || rgMembro == null) {
+      $(".error-rg-membro").html("*obrigatório").show(); // Exibe a mensagem de erro
+      return; // Impede o envio do formulário
+    }
+
+    if (!batismoEspirito) {
+      $(".error-espirito-membro").html("*Campo obrigatório").show(); // Exibe a mensagem de erro
+      return; // Impede o envio do formulário
+    }
+
+    if (!nacionalidade) {
+      $(".error-nacionalidade-membro").html("*Campo obrigatório").show(); // Exibe a mensagem de erro
+      return; // Impede o envio do formulário
+    }
+
+    if (!naturalidade) {
+      $(".error-naturalidade-membro").html("*Campo obrigatório").show(); // Exibe a mensagem de erro
+      return; // Impede o envio do formulário
+    }
+
+    if (!campo) {
+      $(".error-campo-membro").html("*Campo obrigatório").show(); // Exibe a mensagem de erro
+      return; // Impede o envio do formulário
+    }
+
+    $(this).unbind("submit").submit(); // Se passar pelas validações, permitir o envio do formulário
+  });
+
 });

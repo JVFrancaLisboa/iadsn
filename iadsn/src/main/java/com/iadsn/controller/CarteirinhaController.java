@@ -1,6 +1,7 @@
 package com.iadsn.controller;
 
 import com.iadsn.dto.CarteirinhaMembroDTO;
+import com.iadsn.dto.CarteirinhaMinistroDTO;
 import com.iadsn.dto.enums.TipoCarteirinha;
 import com.iadsn.services.MembroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,4 +46,10 @@ public class CarteirinhaController {
         model.addAttribute("membros", membroService.getMembrosDesarquivados());
         return "fragments/captura-membrodto :: content";
     }
+
+//    @GetMapping("/ministrodto")
+//    public String getCapturaMinistroDto(Model model){
+//        model.addAttribute("dto", )
+//        return null;
+//    }
 }
