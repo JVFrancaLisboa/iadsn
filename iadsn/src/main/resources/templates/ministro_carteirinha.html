@@ -117,11 +117,16 @@
           <img th:src="${dto.membro.foto != null} ? @{/membros_api/foto/{id}(id=${dto.membro.id})} : 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg'"
             alt="Foto do membro" class="foto" onerror="this.src='https://via.placeholder.com/60x72?text=Sem+Foto'" />
         </div>
-        <div class="ms-2">
+        <div class="ms-2 w-50">
           <h2 class="text-center titulo">CREDENCIAL DE MEMBRO</h2>
-          <p class="label"><strong>Nome: </strong><span th:text="${dto.membro.nome}"></span></p>
-          <p class="label"><strong>Emissão: </strong><span th:text="${dto.emissao}"></span></p>
-          <p class="label"><strong>Cargo: </strong><span th:text="${dto.membro.cargo}"></span></p>
+          <div class="linha">
+            <p class="label"><strong>Nome: </strong><span th:text="${dto.membro.nome}"></span></p>
+            <p class="label"><strong>Emissão: </strong><span th:text="${dto.emissao}"></span></p>
+          </div>
+          <div class="linha">
+            <p class="label"><strong>Cargo: </strong><span th:text="${dto.membro.cargo}"></span></p>
+            <p class="label"><strong>Ordenação: </strong><span th:text="${dto.ordenacao}"></span></p>
+          </div>
         </div>
       </main>
       <div class="assinatura">
@@ -163,7 +168,7 @@
             <span class="label">Estado Civil: </span><span th:text="${dto.membro.statusCivil}"></span>
           </div>
           <div class="campo">
-            <span class="label">Campo: </span><span th:text="${dto.campo}"></span>
+            <span class="label">Sede: </span><span th:text="${dto.sede}"></span>
           </div>
         </div>
         <div class="linha">

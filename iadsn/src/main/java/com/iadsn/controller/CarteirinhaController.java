@@ -1,5 +1,6 @@
 package com.iadsn.controller;
 
+import com.iadsn.dto.Carteirinha;
 import com.iadsn.dto.CarteirinhaMembroDTO;
 import com.iadsn.dto.CarteirinhaMinistroDTO;
 import com.iadsn.dto.enums.TipoCarteirinha;
@@ -18,26 +19,27 @@ public class CarteirinhaController {
     @Autowired
     private MembroService membroService;
 
-    @GetMapping("/tela")
-    public String getCarteirinhas(@ModelAttribute CarteirinhaMembroDTO dto, Model model){
+    @GetMapping("/membro")
+    public String gerarMembro(@ModelAttribute CarteirinhaMembroDTO dto, Model model){
         dto.getMembro().setNascimento(dto.formatarData(dto.getMembro().getNascimento()));
         dto.setBatismoAguas(dto.formatarData(dto.getBatismoAguas()));
         dto.setBatismoEspiritoSanto(dto.formatarData(dto.getBatismoEspiritoSanto()));
+
         model.addAttribute("dto", dto);
 
-        if(dto.getTipo() == TipoCarteirinha.MEMBRO){
-            return "membro_carteirinha";
-        }
+        return "membro_carteirinha";
+    }
 
-        if(dto.getTipo() == TipoCarteirinha.MINISTRO){
-            return "ministro_carteirinha";
-        }
+    @GetMapping("/ministro")
+    public String gerarMinistro(@ModelAttribute CarteirinhaMinistroDTO dto, Model model){
+        dto.getMembro().setNascimento(dto.formatarData(dto.getMembro().getNascimento()));
+        dto.setBatismoAguas(dto.formatarData(dto.getBatismoAguas()));
+        dto.setBatismoEspiritoSanto(dto.formatarData(dto.getBatismoEspiritoSanto()));
+        dto.setOrdenacao(dto.formatarData(dto.getOrdenacao()));
 
-        if(dto.getTipo() == TipoCarteirinha.MISSIONARIO){
-            return "missionario_carteirinha";
-        }
+        model.addAttribute("dto", dto);
 
-        return null;
+        return "ministro_carteirinha";
     }
 
     @GetMapping("/membrodto")
@@ -47,9 +49,10 @@ public class CarteirinhaController {
         return "fragments/captura-membrodto :: content";
     }
 
-//    @GetMapping("/ministrodto")
-//    public String getCapturaMinistroDto(Model model){
-//        model.addAttribute("dto", )
-//        return null;
-//    }
+    @GetMapping("/ministrodto")
+    public String getCapturaMinistroDto(Model model){
+        model.addAttribute("dto", new CarteirinhaMinistroDTO());
+        model.addAttribute("membros", membroService.getMembrosDesarquivados());
+        return "fragments/captura-ministrodto :: content";
+    }
 }
