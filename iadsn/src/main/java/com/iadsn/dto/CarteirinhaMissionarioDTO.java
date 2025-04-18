@@ -1,5 +1,8 @@
 package com.iadsn.dto;
 
-public class CarteirinhaMissionarioDTO extends Carteirinha{
+import lombok.Data;
 
+@Data
+public class CarteirinhaMissionarioDTO extends Carteirinha{
+    private String sede;
 }

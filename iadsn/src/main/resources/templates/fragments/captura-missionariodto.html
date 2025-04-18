@@ -9,13 +9,13 @@
     <div th:fragment="content">
       <div class="container fundo-2">
         <form
-          id="form-ministrodto"
-          th:action="@{carteirinha/ministro}"
+          id="form-missionariodto"
+          th:action="@{carteirinha/missionario}"
           method="get"
           class="row g-3 needs-validation col-md-8 col-lg-6 mx-auto"
           novalidate
         >
-          <h1>Insira os dados da carteirinha de MINISTRO:</h1>
+          <h1>Insira os dados da carteirinha de MISSIONÁRIO:</h1>
           <div class="row">
             <!-- Escolha da pessoa que irá emitir a carteirinha -->
             <div class="col-md-6">
@@ -122,21 +122,6 @@
                 class="error-naturalidade-membro fst-italic text-danger"
               ></label>
             </div>
-          </div>
-
-          <!-- Ordenação -->
-          <div class="col-md-6">
-            <label for="ordenacao-membro" class="form-label"
-              >Ordenação:
-            </label>
-            <input
-              th:field="${dto.ordenacao}"
-              type="date"
-              class="form-control"
-              id="ordenacao-membro"
-              required
-            />
-            <label class="error-ordenacao-membro fst-italic text-danger"></label>
           </div>
 
           <!-- Sede -->
