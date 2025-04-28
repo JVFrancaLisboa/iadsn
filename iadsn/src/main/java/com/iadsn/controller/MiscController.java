@@ -21,8 +21,8 @@ public class MiscController {
         return "fragments/contrato";
     }
 
-    @GetMapping("/login")
-    public String getLogin() {
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String getLogin() {
+//        return "login";
+//    }
 }
